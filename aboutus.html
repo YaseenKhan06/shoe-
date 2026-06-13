@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | StepStyle Luxury</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 193, 116, 0.3);
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #f0e0d1;
+            overflow-x: hidden;
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 193, 116, 0.3);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#004c6a",
+                      "primary-fixed-dim": "#ffb95f",
+                      "surface-bright": "#41382e",
+                      "tertiary-fixed-dim": "#7fd0ff",
+                      "surface-tint": "#ffb95f",
+                      "on-primary-container": "#613b00",
+                      "tertiary-fixed": "#c5e7ff",
+                      "on-surface-variant": "#d8c3ad",
+                      "inverse-on-surface": "#382f25",
+                      "surface-container-highest": "#3c3329",
+                      "surface-container-lowest": "#140d06",
+                      "on-error": "#690005",
+                      "secondary-container": "#3a4a5f",
+                      "tertiary": "#8fd5ff",
+                      "on-secondary-fixed": "#0b1c30",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#2a1700",
+                      "surface-container-low": "#221a12",
+                      "primary-container": "#f59e0b",
+                      "error": "#ffb4ab",
+                      "on-primary": "#472a00",
+                      "on-tertiary-fixed": "#001e2d",
+                      "surface-container-high": "#31281f",
+                      "primary": "#ffc174",
+                      "on-secondary": "#213145",
+                      "on-secondary-container": "#a9bad3",
+                      "surface": "#19120a",
+                      "on-surface": "#f0e0d1",
+                      "tertiary-container": "#1abdff",
+                      "primary-fixed": "#ffddb8",
+                      "on-error-container": "#ffdad6",
+                      "on-tertiary": "#00344a",
+                      "outline": "#a08e7a",
+                      "background": "#19120a",
+                      "inverse-primary": "#855300",
+                      "outline-variant": "#534434",
+                      "on-background": "#f0e0d1",
+                      "secondary-fixed": "#d3e4fe",
+                      "secondary": "#b7c8e1",
+                      "surface-variant": "#3c3329",
+                      "surface-dim": "#19120a",
+                      "on-tertiary-container": "#004966",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "inverse-surface": "#f0e0d1",
+                      "surface-container": "#261e15",
+                      "on-primary-fixed-variant": "#653e00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "unit": "4px",
+                      "section-gap": "120px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Montserrat"],
+                      "headline-lg": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Montserrat"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Montserrat"],
+                      "display-hero": ["Montserrat"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                      "display-hero": ["84px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-desktop py-4 max-w-7xl mx-auto">
+<div class="font-display-hero text-headline-md text-primary tracking-tighter">StepStyle</div>
+<div class="hidden md:flex gap-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html#categories">Categories</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1" href="aboutus.html">About Us</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="code.html">Contact Us</a>
+</div>
+
+</nav>
+<main class="pt-32">
+<!-- Hero / Brand Story Section -->
+<section class="px-desktop mb-section-gap relative overflow-hidden">
+<div class="grid lg:grid-cols-2 gap-gutter items-center">
+<div class="z-10">
+<span class="font-label-caps text-label-caps text-primary mb-4 block">OUR HERITAGE</span>
+<h1 class="font-display-hero text-headline-lg lg:text-display-hero mb-8 leading-tight">Crafting the<br/><span class="text-primary italic">Absolute</span> Standard.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
+                        Founded in the heart of metropolitan innovation, StepStyle was born from a singular obsession: the fusion of high-performance kinetics and the uncompromising elegance of Parisian couture. We don't just design footwear; we engineer icons for the modern pioneer.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-primary text-background font-label-caps text-label-caps px-10 py-4 hover:scale-105 transition-transform duration-300">DISCOVER THE COLLECTION</button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/10 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+<img class="w-full h-[600px] object-cover rounded-sm grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjpPwFPEItwPk4sZJaQ5EC8mrqk6GZENC6cgWNff0cBgfhGOx8N23Yv-bKw2u6K8l9PEWAaE_6OW6QIBJL-O8G-GQqqQ-ZcPabK5BhIhvUnTkkOq26NsUuBf2RwxjrAFkQV2Pa1rh-WpWqnOCa_DoeB5dby3z5y04wLzhypk9MM2opHsE-37gWuB8tstlMxzjyZqsISw4jUo026jlikqoTNhFq-8AsxzbBihXo5dBjT-4iO0BkH8JRIMr6mtAQxcIzAGZKHtrUEAp_"/>
+</div>
+</div>
+</section>
+<!-- Mission Statement (Glassmorphic Bento) -->
+<section class="px-desktop mb-section-gap">
+<div class="grid md:grid-cols-3 gap-gutter">
+<div class="md:col-span-2 glass-card p-12 flex flex-col justify-between h-[450px]">
+<div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">workspace_premium</span>
+<h2 class="font-headline-lg text-headline-lg mb-6">Our Mission</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                            To redefine the luxury landscape by creating apparel that transcends seasonal trends. We empower the individual through technical precision and aesthetic superiority, ensuring every step is a statement of intent.
+                        </p>
+</div>
+<div class="flex gap-8 mt-auto pt-8 border-t border-white/5">
+<div>
+<p class="font-headline-md text-headline-md text-primary">100%</p>
+<p class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">HAND-CRAFTED</p>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary">02K+</p>
+<p class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">DESIGN ITERATIONS</p>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary">GLOBAL</p>
+<p class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">DISTRIBUTION</p>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 glass-card p-12 flex flex-col items-center justify-center text-center group border-primary/20">
+<span class="material-symbols-outlined text-primary text-6xl mb-6 group-hover:scale-110 transition-transform">eco</span>
+<h3 class="font-headline-md text-headline-md mb-4">Sustainable Luxury</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Every material is ethically sourced and every process optimized to leave nothing but an impression.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Team Section -->
+<section class="px-desktop mb-section-gap">
+<div class="text-center mb-16">
+<span class="font-label-caps text-label-caps text-primary mb-4 block">THE VISIONARIES</span>
+<h2 class="font-headline-lg text-headline-lg">Architects of Style</h2>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Founder -->
+<div class="group">
+<div class="relative overflow-hidden mb-6 aspect-[3/4]">
+<img class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0" data-alt="A portrait of a male visionary founder in a dark designer suit, standing in a sophisticated architectural space with glass and concrete elements. The lighting is low-key and dramatic, casting shadows that emphasize a serious and focused expression. The overall aesthetic is minimalist, dark, and highly professional, utilizing a palette of deep blacks and subtle metallic highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRwGAuSsce40HQuMZo3KNePt5YtyfYHXlK9pan14z8va_W8BvylKhNHIlfpWEWTVyqwBkZiu4ASffAF4c056ipnn_bPe07uNoNWNLExWzfA4dmfrEkT3p_K9SVLzTkVD37NvTHw-YDMVPg7GEINIG5DXTvoY_TRjXWkvikjhk01JtArPX61sO5w496WUiHTQz-qTrMUO10gIZlpo88rCaBaEA-FTTN_AzBptQa63NW-A90HyqCLG7MFgG9AdoCbn3gn-U5_PT_WxLx"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-1">Julian Thorne</h4>
+<p class="font-label-caps text-label-caps text-primary mb-4">CHIEF EXECUTIVE FOUNDER</p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        A pioneer in luxury brand strategy with over two decades of influence in the global fashion circuit.
+                    </p>
+</div>
+<!-- Head Designer -->
+<div class="group">
+<div class="relative overflow-hidden mb-6 aspect-[3/4]">
+<img class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0" data-alt="A high-fashion editorial portrait of a female lead designer with an avant-garde aesthetic. She is wearing a structured, high-concept black garment in a dimly lit studio setting with warm amber backlighting that creates a halo effect. The image is sophisticated and artistic, embodying the brand's commitment to high-end design and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuR1RbBnhJN7-7nQl5qfK9H1QmuoFggjRGCRNUFP8ZcSeXgx_b7Aza3FV6tzd8KDcnk71BRtseCJW0436_6MkEjQHi2dFsz2H7JiZeXvsCo_kNZQHrWSpcDpuLZ5jmVJE_G5Y4is4z0UrFJZdSFI-L5KHfTlZF9KjKJ1w60nE4NqbFQcEzv4NSnpZ4mkMlpUjc0Hki1oTJI1VWYkakaPsBgjutLK3vxpZ4ynYGe2JkWf6mL7dI4aMfq5t9YeWawl7vi5FJlbErM3i9"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-1">Elena Rossi</h4>
+<p class="font-label-caps text-label-caps text-primary mb-4">CREATIVE DIRECTOR</p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        The architect of our silhouette. Elena brings a sculptural approach to athletic footwear design.
+                    </p>
+</div>
+<!-- Product Architect -->
+<div class="group">
+<div class="relative overflow-hidden mb-6 aspect-[3/4]">
+<img class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0" data-alt="A close-up portrait of a male product architect with a technical and intellectual aura. He is in a modern office environment with subtle technological elements in the blurred background. The lighting is soft but directed, highlighting the details of a premium watch and eyewear. The mood is focused and innovative, captured in a refined dark-tone style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArpS988hJ__aj2J8mDnVUvdfbI4-2m9msu5j_cK4cDk60nXCOm9RDDfByAbmdqNscUbC3DBUzeWHC_Cc0og_WlX5eAGRRpwlq2TXQ6Cpgi4YLQJqAtQ0p85w__7cEwRTT2TJbo5bOGUqQVBXbbXMx9gQAxtesgjd9onCJU8nCLZHPBf45Ywf8uezpA9HtFBIvtWYaNyz4ybK9BxBEpqly8LRmEU3KtCCsZpBz4_TSrfGx6ooMzMwVTftzgRu0yvbMfNF9F1dJQVWzs"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-1">Marcus Vane</h4>
+<p class="font-label-caps text-label-caps text-primary mb-4">LEAD PRODUCT ARCHITECT</p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Bridging the gap between material science and street-ready aesthetics with rigorous precision.
+                    </p>
+</div>
+<!-- Operations -->
+<div class="group">
+<div class="relative overflow-hidden mb-6 aspect-[3/4]">
+<img class="w-full h-full object-cover grayscale transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0" data-alt="A portrait of a confident female operations director in a high-end corporate setting with a view of a city skyline at dusk. The palette is rich with deep blues and blacks, with golden ambient light from the city reflected in the window. Her expression is poised and commanding, representing the organizational strength and luxury status of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB5gT29EdApnyHm2HW31As7nbNddLgG7-KW1FeYUQimEVbGVcXJechqXdA9IGoygYxplezo7VYLSPyhghSAADMVDD4Q6YGD5-7fz6QzCyJFpkxzxTis35OkP-pOfvVqmzrJBVRnazGFoxHYSRx5YMz1e324Quq3wJjpOI9D3X3q6l4RjX-ynF1of2boDMuTjbhe35meGgc3svcp2wXoIV5TPIuk2gL0xTRRdZ8fnht-5Eb5YDFTAyUmBzbkZXs95e5M_DbJNs0xEFH"/>
+</div>
+<h4 class="font-headline-md text-headline-md mb-1">Sophia Chen</h4>
+<p class="font-label-caps text-label-caps text-primary mb-4">HEAD OF OPERATIONS</p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Ensuring the StepStyle experience is flawless from the initial craft to the final delivery.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Animated Background Ornament -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-on-tertiary-fixed-variant/5 rounded-full blur-[120px]"></div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full relative border-t border-white/5 mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-center px-desktop py-section-gap gap-gutter max-w-full mx-auto">
+<div class="flex flex-col items-center md:items-start">
+<div class="font-display-hero text-headline-md text-primary mb-2">StepStyle</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left max-w-xs">Elevating the walk of life with engineered luxury.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Shipping Info</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Returns</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:scale-110 transition-transform">public</span>
+<span class="material-symbols-outlined text-primary-fixed-dim cursor-pointer hover:scale-110 transition-transform">mail</span>
+</div>
+</div>
+</div>
+<div class="text-center py-8 border-t border-white/5 opacity-50">
+<span class="font-body-md text-[12px] text-on-surface-variant">© 2024 StepStyle Luxury. All rights reserved.</span>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .input-focus-effect:focus {
+            outline: none;
+            border-bottom-color: #ffc174;
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #f0e0d1;
+            overflow-x: hidden;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#004c6a",
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#41382e",
+                        "tertiary-fixed-dim": "#7fd0ff",
+                        "surface-tint": "#ffb95f",
+                        "on-primary-container": "#613b00",
+                        "tertiary-fixed": "#c5e7ff",
+                        "on-surface-variant": "#d8c3ad",
+                        "inverse-on-surface": "#382f25",
+                        "surface-container-highest": "#3c3329",
+                        "surface-container-lowest": "#140d06",
+                        "on-error": "#690005",
+                        "secondary-container": "#3a4a5f",
+                        "tertiary": "#8fd5ff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#2a1700",
+                        "surface-container-low": "#221a12",
+                        "primary-container": "#f59e0b",
+                        "error": "#ffb4ab",
+                        "on-primary": "#472a00",
+                        "on-tertiary-fixed": "#001e2d",
+                        "surface-container-high": "#31281f",
+                        "primary": "#ffc174",
+                        "on-secondary": "#213145",
+                        "on-secondary-container": "#a9bad3",
+                        "surface": "#19120a",
+                        "on-surface": "#f0e0d1",
+                        "tertiary-container": "#1abdff",
+                        "primary-fixed": "#ffddb8",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#00344a",
+                        "outline": "#a08e7a",
+                        "background": "#19120a",
+                        "inverse-primary": "#855300",
+                        "outline-variant": "#534434",
+                        "on-background": "#f0e0d1",
+                        "secondary-fixed": "#d3e4fe",
+                        "secondary": "#b7c8e1",
+                        "surface-variant": "#3c3329",
+                        "surface-dim": "#19120a",
+                        "on-tertiary-container": "#004966",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "inverse-surface": "#f0e0d1",
+                        "surface-container": "#261e15",
+                        "on-primary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "display-hero": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "display-hero": ["84px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-desktop py-unit max-w-7xl mx-auto left-1/2 -translate-x-1/2">
+<div class="font-display-hero text-headline-md text-primary tracking-tighter">StepStyle</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html">Home</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html#categories">Categories</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="aboutus.html">About Us</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1" href="code.html">Contact Us</a>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-24 text-center">
+<span class="font-label-caps text-label-caps text-primary mb-4 block">GET IN TOUCH</span>
+<h1 class="font-display-hero text-[64px] md:text-display-hero uppercase tracking-tighter leading-none mb-8">Elevate Your Journey</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Our concierge team is available to assist with private appointments, sizing consultations, and limited edition inquiries.</p>
+</header>
+<!-- Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Contact Form Section -->
+<div class="lg:col-span-7 glass-panel p-8 md:p-12 rounded-xl">
+<form class="space-y-8" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative group">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block transition-colors group-focus-within:text-primary">Full Name</label>
+<input class="w-full bg-transparent border-0 border-b border-white/20 py-3 px-0 font-body-md text-body-md placeholder:text-white/10 input-focus-effect transition-all" placeholder="ALEXANDER VOGUE" type="text"/>
+</div>
+<div class="relative group">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block transition-colors group-focus-within:text-primary">Email Address</label>
+<input class="w-full bg-transparent border-0 border-b border-white/20 py-3 px-0 font-body-md text-body-md placeholder:text-white/10 input-focus-effect transition-all" placeholder="ALEX@STEPSTYLE.LUXURY" type="email"/>
+</div>
+</div>
+<div class="relative group">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block transition-colors group-focus-within:text-primary">Phone Number</label>
+<input class="w-full bg-transparent border-0 border-b border-white/20 py-3 px-0 font-body-md text-body-md placeholder:text-white/10 input-focus-effect transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<div class="relative group">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block transition-colors group-focus-within:text-primary">Your Message</label>
+<textarea class="w-full bg-transparent border-0 border-b border-white/20 py-3 px-0 font-body-md text-body-md placeholder:text-white/10 input-focus-effect transition-all resize-none" placeholder="HOW CAN WE ASSIST YOUR STYLE JOURNEY?" rows="4"></textarea>
+</div>
+<button class="w-full md:w-auto bg-primary-container text-on-primary font-label-caps text-label-caps px-12 py-5 uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+                        Send Inquiry
+                    </button>
+</form>
+</div>
+<!-- Side Info Section -->
+<div class="lg:col-span-5 flex flex-col gap-8">
+<!-- Image Card -->
+<div class="relative h-64 md:h-80 overflow-hidden rounded-xl group">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA8SbhME9gr1VGlXq2JZhwX04ZrjCQV-BTdnjjN45N0bZOZhqvE9uCmMFlWMg_T3QQaUxpM-Y1Sau3IdA0M8GSZA1DGUv5e-3s__-EDVetvUv9ORqAitDW2mH0B4-gN2LsGzyt4akOrBdGIFukm-tMDXa8RUpTpI8qlQb2NZQwo8LY6EAngA-iRXMIqZq_mRopcbqVo9PDRLRH_Eby4G1JKciS-ed23gD39dfLybwGQ7av267AFZFFofHcJjWd1DDsMQUDU7Abs_1C"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+</div>
+<!-- Contact Details -->
+<div class="glass-panel p-8 rounded-xl flex flex-col gap-10">
+<div class="flex items-start gap-6">
+<div class="bg-primary/10 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-primary mb-2 uppercase">Flagship Studio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">742 Avenue of the Arts<br/>Manhattan, NY 10019</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="bg-primary/10 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary">forum</span>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-primary mb-2 uppercase">Concierge WhatsApp</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">Instant styling support available 24/7.</p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary hover:opacity-80 transition-opacity" href="https://wa.me/1234567890">
+                                CHAT NOW <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="bg-primary/10 p-3 rounded-full">
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-primary mb-2 uppercase">Atelier Hours</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Mon – Sat: 10:00 – 19:00<br/>Sunday: By Appointment Only</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Global Presence (Map Placeholder) -->
+<section class="mt-section-gap">
+<div class="relative w-full h-[400px] glass-panel rounded-xl overflow-hidden grayscale contrast-125 opacity-80 hover:opacity-100 transition-opacity duration-500">
+<div class="absolute inset-0 z-10 bg-primary/5 pointer-events-none"></div>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUpH-1olFNEA7M8dYMqfGkYq2WyfPeILxoyJMAgdqitbiryZl3UPfRS8siupTha9vXUfv5UiH0gSRCVMsliYJG1hph3lhKPfgygpKhJs31qOjdcA7gWZBEx9h3KRacL9qYnyaw5rqYKIysGsXtZryysIRkP82fc74X5ODpL755i6XDVDuUSd9LKQJt7gHbj5X35-EME-GswKsT826t8sQzqBfOK-C5ICrnRGY5UTze7ggvM5xmIm7U2YTL63-a9-Msd0V50WWtUrYf"/>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+<div class="relative">
+<div class="w-8 h-8 bg-primary rounded-full animate-ping absolute inset-0 opacity-20"></div>
+<div class="w-8 h-8 bg-primary rounded-full relative flex items-center justify-center border-4 border-background">
+<span class="w-2 h-2 bg-background rounded-full"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-white/5 px-desktop py-section-gap w-full relative">
+<div class="flex flex-col md:flex-row justify-between items-center gap-gutter max-w-7xl mx-auto">
+<div class="font-display-hero text-headline-md text-primary">StepStyle</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Shipping Info</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Returns</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">© 2024 StepStyle Luxury. All rights reserved.</div>
+</div>
+</footer>
+</body></html>

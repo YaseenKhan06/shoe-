@@ -1,0 +1,16 @@
+{
+  "name": "stepstyle-ecommerce",
+  "version": "1.0.0",
+  "description": "Premium Luxury Performance Footwear Ecommerce",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node local.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.1"
+  }
+}

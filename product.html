@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>StepStyle | Product Atelier</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#41382e",
+                        "on-surface-variant": "#d8c3ad",
+                        "surface-container-highest": "#3c3329",
+                        "surface-container-lowest": "#140d06",
+                        "on-primary-container": "#613b00",
+                        "primary-container": "#f59e0b",
+                        "primary": "#ffc174",
+                        "surface": "#19120a",
+                        "on-surface": "#f0e0d1",
+                        "background": "#0A0A0A",
+                        "on-background": "#f0e0d1",
+                        "secondary": "#b7c8e1",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "display-hero": ["Montserrat"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #f0e0d1;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 193, 116, 0.3);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 193, 116, 0.4);
+        }
+        .border-glow {
+            box-shadow: 0 0 15px rgba(255, 193, 116, 0.1);
+        }
+    </style>
+    <script src="search.js" defer></script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-full mx-auto">
+        <div class="font-display-hero text-headline-md text-primary tracking-tighter cursor-pointer animate-pulse" onclick="window.location.href='index.html'">StepStyle</div>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html">Home</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html#categories">Categories</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="aboutus.html">About Us</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="code.html">Contact Us</a>
+        </div>
+        <div class="flex items-center gap-6 text-on-surface-variant">
+            <button class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">search</button>
+            <div class="relative cursor-pointer hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">favorite</span>
+                <span class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </div>
+            <div class="relative cursor-pointer hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-6 md:px-margin-desktop pt-32 pb-16">
+        
+        <!-- Breadcrumbs -->
+        <div class="text-xs text-on-surface-variant/70 mb-8 flex gap-2 items-center flex-wrap uppercase tracking-wider font-label-caps">
+            <a href="index.html" class="hover:text-primary">Home</a>
+            <span>&gt;</span>
+            <a href="index.html#categories" class="hover:text-primary">Categories</a>
+            <span>&gt;</span>
+            <span id="breadcrumb-category" class="hover:text-primary text-primary">Sports Shoes</span>
+            <span>&gt;</span>
+            <span id="breadcrumb-name" class="text-on-surface font-bold">Nike Air Max 270</span>
+        </div>
+
+        <!-- Product Presentation Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+            
+            <!-- Left Side: Images Grid -->
+            <div class="lg:col-span-6 space-y-6">
+                <!-- Main Product Display Card -->
+                <div class="relative bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden flex items-center justify-center p-8 aspect-square group">
+                    <span id="discount-badge" class="absolute top-4 left-4 bg-primary text-black text-xs font-bold font-label-caps px-3 py-1.5 rounded-full z-10">-30%</span>
+                    <button id="slider-arrow-prev" onclick="changeImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/75 flex items-center justify-center border border-white/10 z-10 transition-colors">
+                        <span class="material-symbols-outlined text-on-surface">chevron_left</span>
+                    </button>
+                    
+                    <img id="main-product-image" class="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=600" alt="Main Product"/>
+                    
+                    <button id="slider-arrow-next" onclick="changeImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-black/75 flex items-center justify-center border border-white/10 z-10 transition-colors">
+                        <span class="material-symbols-outlined text-on-surface">chevron_right</span>
+                    </button>
+                    
+                    <button onclick="openZoomModal()" class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/40 hover:bg-black/75 flex items-center justify-center border border-white/10 z-10 transition-colors">
+                        <span class="material-symbols-outlined text-on-surface">fullscreen</span>
+                    </button>
+                </div>
+
+                <!-- Product Gallery Thumbnails -->
+                <div class="flex items-center gap-4">
+                    <button class="material-symbols-outlined text-on-surface-variant hover:text-primary">chevron_left</button>
+                    <div class="flex-grow grid grid-cols-5 gap-3" id="gallery-grid">
+                        <div class="border-2 border-primary bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer">
+                            <img class="w-full h-full object-contain" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=100"/>
+                        </div>
+                        <div class="border border-white/10 bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer hover:border-primary/50">
+                            <img class="w-full h-full object-contain" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=100"/>
+                        </div>
+                        <div class="border border-white/10 bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer hover:border-primary/50">
+                            <img class="w-full h-full object-contain" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=100"/>
+                        </div>
+                        <div class="border border-white/10 bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer hover:border-primary/50">
+                            <img class="w-full h-full object-contain" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=100"/>
+                        </div>
+                        <div class="border border-white/10 bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer hover:border-primary/50">
+                            <img class="w-full h-full object-contain" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=100"/>
+                        </div>
+                    </div>
+                    <button class="material-symbols-outlined text-on-surface-variant hover:text-primary">chevron_right</button>
+                </div>
+            </div>
+
+            <!-- Right Side: Details & Selectors -->
+            <div class="lg:col-span-6 space-y-6">
+                <div>
+                    <span class="bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold font-label-caps px-3 py-1 rounded tracking-wider inline-block mb-3 uppercase">Best Seller</span>
+                    <h1 id="product-title" class="font-display-hero text-4xl md:text-5xl uppercase tracking-tight text-glow mb-1">Nike Air Max 270</h1>
+                    <p id="product-category" class="font-body-md text-on-surface-variant text-sm uppercase tracking-wider">Men's Sports Shoes</p>
+                </div>
+
+                <!-- Star Ratings (Hidden for now) -->
+                <div class="hidden"></div>
+
+                <!-- Price Area -->
+                <div class="flex items-center gap-4">
+                    <span id="product-price" class="font-display-hero text-3xl md:text-4xl text-primary text-glow">₹4,999</span>
+                    <span id="product-original-price" class="font-body-lg text-lg text-on-surface-variant/40 line-through">₹6,999</span>
+                    <span id="discount-pill" class="border border-primary/30 text-primary text-[10px] font-bold font-label-caps px-2.5 py-1 rounded">30% OFF</span>
+                </div>
+
+                <!-- Short description -->
+                <p id="product-short-desc" class="font-body-md text-on-surface-variant leading-relaxed">
+                    No description provided.
+                </p>
+
+                <!-- Size selection -->
+                <div class="space-y-3" id="sizes-section">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="font-label-caps text-on-surface-variant uppercase tracking-wider">Select Size (UK)</span>
+                        <a href="#" class="text-primary hover:underline font-label-caps">Size Guide</a>
+                    </div>
+                    <div class="grid grid-cols-7 gap-2" id="sizes-grid">
+                        <!-- Dynamically generated size boxes -->
+                    </div>
+                </div>
+
+                <!-- Quantity selector -->
+                <div class="space-y-3">
+                    <p class="font-label-caps text-xs text-on-surface-variant uppercase tracking-wider">Quantity</p>
+                    <div class="flex items-center border border-white/20 rounded w-max">
+                        <button class="px-4 py-2 hover:bg-white/5 text-lg font-bold transition-colors">-</button>
+                        <input type="text" value="1" readonly class="w-12 bg-transparent text-center border-0 focus:ring-0 text-sm"/>
+                        <button class="px-4 py-2 hover:bg-white/5 text-lg font-bold transition-colors">+</button>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <button class="py-4 bg-primary text-black font-label-caps text-label-caps hover:scale-[1.02] transition-transform duration-300 flex items-center justify-center gap-2 font-bold">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                        Add to Cart
+                    </button>
+                    <button class="py-4 border border-primary text-primary font-label-caps text-label-caps hover:bg-primary hover:text-black transition-all hover:scale-[1.02] duration-300 font-bold uppercase tracking-wider">
+                        Buy Now
+                    </button>
+                </div>
+
+                <!-- Wishlist and Compare options -->
+                <div class="flex items-center gap-6 text-xs font-label-caps text-on-surface-variant pt-2">
+                    <button class="flex items-center gap-2 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-sm">favorite</span> Add to Wishlist
+                    </button>
+                    <button class="flex items-center gap-2 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-sm">sync</span> Compare
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Middle Value Props Section -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 my-16 border-t border-b border-white/10 text-sm">
+            <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+                <div>
+                    <p class="font-bold text-on-surface">Free Shipping</p>
+                    <p class="text-xs text-on-surface-variant">On orders over ₹999</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-3xl">replay</span>
+                <div>
+                    <p class="font-bold text-on-surface">Easy Returns</p>
+                    <p class="text-xs text-on-surface-variant">30 days return policy</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                <div>
+                    <p class="font-bold text-on-surface">100% Original</p>
+                    <p class="text-xs text-on-surface-variant">Genuine Products</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary text-3xl">security</span>
+                <div>
+                    <p class="font-bold text-on-surface">Secure Payment</p>
+                    <p class="text-xs text-on-surface-variant">Safe & secure checkout</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Tabs Section -->
+        <div class="glass-card rounded-xl overflow-hidden p-8 mb-16">
+            <!-- Tab Headers -->
+            <div class="flex gap-8 border-b border-white/10 pb-4 mb-6">
+                <button class="font-label-caps text-sm border-b-2 border-primary text-primary pb-4 -mb-[18px]">Description</button>
+                <button class="font-label-caps text-sm text-on-surface-variant hover:text-primary transition-colors pb-4">Reviews</button>
+                <button class="font-label-caps text-sm text-on-surface-variant hover:text-primary transition-colors pb-4">Shipping & Returns</button>
+            </div>
+            
+            <!-- Tab Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-4">
+                <!-- Left Details description -->
+                <div class="space-y-6">
+                    <p id="product-tab-desc" class="font-body-md text-on-surface-variant leading-relaxed">
+                        No description provided.
+                    </p>
+                </div>
+                <!-- Right Spec Table -->
+                <div class="bg-white/[0.01] border border-white/5 rounded-lg p-6">
+                    <table class="w-full text-sm">
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="py-3 flex justify-between">
+                                <td class="text-on-surface-variant">Brand</td>
+                                <td id="spec-brand" class="text-on-surface font-bold text-right">-</td>
+                            </tr>
+                            <tr class="py-3 flex justify-between">
+                                <td class="text-on-surface-variant">Category</td>
+                                <td id="spec-category" class="text-on-surface font-bold text-right">-</td>
+                            </tr>
+                            <tr class="py-3 flex justify-between">
+                                <td class="text-on-surface-variant">Material</td>
+                                <td id="spec-material" class="text-on-surface font-bold text-right">-</td>
+                            </tr>
+                            <tr class="py-3 flex justify-between">
+                                <td class="text-on-surface-variant">Sole Material</td>
+                                <td id="spec-sole" class="text-on-surface font-bold text-right">-</td>
+                            </tr>
+                            <tr class="py-3 flex justify-between">
+                                <td class="text-on-surface-variant">Closure</td>
+                                <td id="spec-closure" class="text-on-surface font-bold text-right">-</td>
+                            </tr>
+                            <tr class="py-3 flex justify-between">
+                                <td class="text-on-surface-variant">Suitable For</td>
+                                <td id="spec-suitable" class="text-on-surface font-bold text-right">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- You May Also Like Section -->
+        <section class="space-y-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="font-headline-lg text-2xl md:text-3xl text-on-surface uppercase">You May Also Like</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="text-primary hover:underline font-label-caps text-xs uppercase">View All</a>
+                    <div class="flex gap-2">
+                        <button class="w-8 h-8 rounded bg-white/5 border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+                        <button class="w-8 h-8 rounded bg-white/5 border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggestion Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter" id="related-products-grid">
+                <div class="text-on-surface-variant/50 text-center py-12 col-span-full font-body-md">Loading related drops...</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest text-on-surface-variant w-full relative border-t border-white/5 py-12 px-6 md:px-margin-desktop">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-gutter mb-12">
+            <div class="max-w-xs">
+                <div class="font-display-hero text-headline-md text-primary mb-4">StepStyle</div>
+                <p class="font-body-md text-sm leading-relaxed">Redefining the architecture of motion through luxury performance footwear since 2024.</p>
+                
+                <div class="flex gap-4 mt-6">
+                    <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">share</span>
+                    <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">public</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">QUICK LINKS</h4>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="index.html">Home</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="index.html#categories">Categories</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="aboutus.html">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="code.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">CUSTOMER SERVICE</h4>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Returns & Exchanges</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">CONTACT INFO</h4>
+                    <p class="text-sm leading-relaxed mb-2">123 Shoe Street, New York, USA</p>
+                    <p class="text-sm leading-relaxed mb-2">+1 234 567 8900</p>
+                    <p class="text-sm leading-relaxed">support@stepstyle.luxury</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-body-md">
+            <span class="opacity-50">© 2024 StepStyle Luxury. All rights reserved.</span>
+            <div class="flex gap-6">
+                <a class="hover:text-primary transition-colors uppercase" href="#">TERMS OF SERVICE</a>
+                <a class="hover:text-primary transition-colors uppercase" href="#">ACCESSIBILITY</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dynamic JS Fetch Script -->
+    <script>
+        let currentImgList = [];
+        let activeImageIndex = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (productId) {
+                fetchProductDetails(productId);
+            }
+        });
+
+        async function fetchProductDetails(id) {
+            try {
+                // Primary fetch: Try to load from specific single endpoint
+                let response = await fetch(`/api/products/${id}`);
+                let product;
+                
+                if (response.ok) {
+                    product = await response.json();
+                } else {
+                    // Secondary fallback: Fetch list and filter manually
+                    const fallbackResponse = await fetch('/api/products');
+                    if (fallbackResponse.ok) {
+                        const catalog = await fallbackResponse.json();
+                        product = catalog.find(item => item._id === id || item.name.toLowerCase().replace(/\s+/g, '-') === id);
+                    }
+                }
+
+                if (product) {
+                    injectProductData(product);
+                } else {
+                    console.error('Product not found in database.');
+                }
+            } catch (err) {
+                console.error('Error fetching product data:', err);
+            }
+        }
+
+        function changeImage(direction) {
+            if (currentImgList.length <= 1) return;
+            activeImageIndex = (activeImageIndex + direction + currentImgList.length) % currentImgList.length;
+            updateActiveImage();
+        }
+
+        function updateActiveImage() {
+            const mainImg = document.getElementById('main-product-image');
+            if (mainImg && currentImgList[activeImageIndex]) {
+                mainImg.src = currentImgList[activeImageIndex];
+            }
+            // Update active state border in gallery thumbnails
+            document.querySelectorAll('#gallery-grid > div').forEach((el, idx) => {
+                el.className = idx === activeImageIndex 
+                    ? 'border-2 border-primary bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer' 
+                    : 'border border-white/10 bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer hover:border-primary/50';
+            });
+        }
+
+        function openZoomModal() {
+            const modal = document.getElementById('zoom-modal');
+            const zoomImg = document.getElementById('zoom-image');
+            if (modal && zoomImg && currentImgList[activeImageIndex]) {
+                zoomImg.src = currentImgList[activeImageIndex];
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeZoomModal() {
+            const modal = document.getElementById('zoom-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function selectSize(btn) {
+            document.querySelectorAll('#sizes-grid > button').forEach(b => {
+                b.className = "py-3 bg-white/5 border border-white/10 text-center text-sm hover:border-primary transition-all rounded text-on-surface";
+            });
+            btn.className = "py-3 bg-white/5 border-2 border-primary text-center text-sm font-bold text-primary rounded";
+        }
+
+        async function loadRelatedProducts(currentId) {
+            try {
+                const res = await fetch('/api/products');
+                if (!res.ok) return;
+                const products = await res.json();
+                
+                // Filter out the currently viewed product
+                const related = products.filter(p => p._id !== currentId).slice(0, 4);
+                
+                const grid = document.getElementById('related-products-grid');
+                if (!grid) return;
+                
+                if (related.length === 0) {
+                    grid.innerHTML = '<div class="text-on-surface-variant/50 text-center py-12 col-span-full font-body-md">No other products available.</div>';
+                    return;
+                }
+                
+                grid.innerHTML = related.map(p => {
+                    const mainImg = Array.isArray(p.img) ? p.img[0] : p.img;
+                    return `
+                        <div class="glass-card flex flex-col p-4 group rounded-xl cursor-pointer" onclick="window.location.href='product.html?id=${p._id}'">
+                            <div class="relative aspect-square overflow-hidden mb-6 bg-white/[0.01] rounded border border-white/5">
+                                <img src="${mainImg}" alt="${p.name}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"/>
+                                <button class="absolute bottom-4 right-4 bg-primary text-black p-3 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+                                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                                </button>
+                            </div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-headline-md text-[16px] text-on-surface">${p.name}</h4>
+                                <span class="font-label-caps text-xs text-primary">₹${p.price}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.error('Error loading related products:', err);
+            }
+        }
+
+        function injectProductData(p) {
+            // Update Breadcrumbs
+            document.getElementById('breadcrumb-category').innerText = p.category + " Shoes";
+            document.getElementById('breadcrumb-name').innerText = p.name;
+
+            // Update Titles & Category
+            document.getElementById('product-title').innerText = p.name;
+            document.getElementById('product-category').innerText = "Men's " + p.category + " Shoes";
+
+            // Update Spec Table
+            document.getElementById('spec-brand').innerText = p.brand || 'StepStyle';
+            document.getElementById('spec-category').innerText = p.category + " Shoes";
+            document.getElementById('spec-material').innerText = p.material || 'Mesh, Synthetic';
+            document.getElementById('spec-sole').innerText = p.soleMaterial || 'Rubber';
+            document.getElementById('spec-closure').innerText = p.closure || 'Lace-Up';
+            document.getElementById('spec-suitable').innerText = p.suitableFor || 'Men';
+
+            // Update Main Display Image
+            currentImgList = Array.isArray(p.img) ? p.img : [p.img];
+            activeImageIndex = 0;
+            
+            const mainImg = document.getElementById('main-product-image');
+            if (mainImg) {
+                mainImg.src = currentImgList[0];
+                mainImg.alt = p.name;
+            }
+
+            // Hide/Show navigation arrows based on image count
+            const arrowPrev = document.getElementById('slider-arrow-prev');
+            const arrowNext = document.getElementById('slider-arrow-next');
+            if (arrowPrev && arrowNext) {
+                if (currentImgList.length <= 1) {
+                    arrowPrev.classList.add('hidden');
+                    arrowNext.classList.add('hidden');
+                } else {
+                    arrowPrev.classList.remove('hidden');
+                    arrowNext.classList.remove('hidden');
+                }
+            }
+
+            // Update Descriptions
+            const descriptionText = p.description || "Experience unbeatable comfort and style with " + p.name + ". Built for athletic performance and designed for everyday editorial aesthetics.";
+            document.getElementById('product-short-desc').innerText = descriptionText;
+            document.getElementById('product-tab-desc').innerText = descriptionText;
+
+            // Prepend currency symbol for Price & calculate original price
+            let numericPrice = parseFloat(p.price);
+            if (!isNaN(numericPrice)) {
+                document.getElementById('product-price').innerText = "₹" + numericPrice.toLocaleString('en-IN');
+                let originalVal = Math.round(numericPrice * 1.43);
+                document.getElementById('product-original-price').innerText = "₹" + originalVal.toLocaleString('en-IN');
+            } else {
+                document.getElementById('product-price').innerText = "₹" + p.price;
+                document.getElementById('product-original-price').innerText = "";
+            }
+
+            // Populate sizes dynamically
+            const sizesSection = document.getElementById('sizes-section');
+            const sizesGrid = document.getElementById('sizes-grid');
+            if (p.sizes && p.sizes.length > 0) {
+                sizesSection.classList.remove('hidden');
+                sizesGrid.innerHTML = p.sizes.map((size, index) => `
+                    <button onclick="selectSize(this)" class="py-3 bg-white/5 border ${index === 0 ? 'border-2 border-primary text-primary font-bold animate-pulse' : 'border-white/10'} text-center text-sm hover:border-primary transition-all rounded text-on-surface">
+                        ${size}
+                    </button>
+                `).join('');
+            } else {
+                sizesSection.classList.add('hidden');
+            }
+
+            // Sync gallery thumbnails to use all product images dynamically
+            const galleryGrid = document.getElementById('gallery-grid');
+            if (galleryGrid) {
+                galleryGrid.innerHTML = currentImgList.map((imgUrl, index) => `
+                    <div class="${index === 0 ? 'border-2 border-primary' : 'border border-white/10'} bg-white/[0.02] rounded overflow-hidden p-2 aspect-square cursor-pointer hover:border-primary/50" onclick="activeImageIndex = ${index}; updateActiveImage();">
+                        <img class="w-full h-full object-contain" src="${imgUrl}"/>
+                    </div>
+                `).join('');
+            }
+
+            // Load related products dynamically
+            loadRelatedProducts(p._id);
+        }
+    </script>
+
+    <!-- Zoom Modal -->
+    <div id="zoom-modal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <button onclick="closeZoomModal()" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center border border-white/10 transition-all text-on-surface text-xl">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <img id="zoom-image" class="max-w-full max-h-[85vh] object-contain rounded-lg border border-white/10 shadow-2xl" src="" alt="Zoomed Product"/>
+    </div>
+
+</body>
+</html>

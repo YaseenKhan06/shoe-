@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>StepStyle | Luxury Performance Footwear</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#004c6a",
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#41382e",
+                        "tertiary-fixed-dim": "#7fd0ff",
+                        "surface-tint": "#ffb95f",
+                        "on-primary-container": "#613b00",
+                        "tertiary-fixed": "#c5e7ff",
+                        "on-surface-variant": "#d8c3ad",
+                        "inverse-on-surface": "#382f25",
+                        "surface-container-highest": "#3c3329",
+                        "surface-container-lowest": "#140d06",
+                        "on-error": "#690005",
+                        "secondary-container": "#3a4a5f",
+                        "tertiary": "#8fd5ff",
+                        "on-secondary-fixed": "#0b1c30",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#2a1700",
+                        "surface-container-low": "#221a12",
+                        "primary-container": "#f59e0b",
+                        "error": "#ffb4ab",
+                        "on-primary": "#472a00",
+                        "on-tertiary-fixed": "#001e2d",
+                        "surface-container-high": "#31281f",
+                        "primary": "#ffc174",
+                        "on-secondary": "#213145",
+                        "on-secondary-container": "#a9bad3",
+                        "surface": "#19120a",
+                        "on-surface": "#f0e0d1",
+                        "tertiary-container": "#1abdff",
+                        "primary-fixed": "#ffddb8",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#00344a",
+                        "outline": "#a08e7a",
+                        "background": "#19120a",
+                        "inverse-primary": "#855300",
+                        "outline-variant": "#534434",
+                        "on-background": "#f0e0d1",
+                        "secondary-fixed": "#d3e4fe",
+                        "secondary": "#b7c8e1",
+                        "surface-variant": "#3c3329",
+                        "surface-dim": "#19120a",
+                        "on-tertiary-container": "#004966",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "inverse-surface": "#f0e0d1",
+                        "surface-container": "#261e15",
+                        "on-primary-fixed-variant": "#653e00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "display-hero": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "display-hero": ["84px", { "lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+        }
+    </style>
+    <script src="search.js" defer></script>
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+    <!-- Top Navigation Bar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-full mx-auto">
+        <div class="font-display-hero text-headline-md text-primary tracking-tighter">StepStyle</div>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 transition-all duration-300"
+                href="index.html">Home</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105"
+                href="index.html#categories">Categories</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105"
+                href="aboutus.html">About Us</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105"
+                href="code.html">Contact Us</a>
+        </div>
+        <div class="flex items-center gap-4 text-on-surface-variant">
+            <button
+                class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">search</button>
+            <button
+                class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">shopping_cart</button>
+            <button class="md:hidden material-symbols-outlined">menu</button>
+        </div>
+    </nav>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img class="w-full h-full object-cover brightness-50"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlZZXaEfOBVkh_LAYc7E7PoFebFDxb8e9-QYn079kgdfIOZImezT5Fkopr3ybi-QaCOO18_dF6wWv762rWHggg_7VR1Dn3rqRpGKkuLHjwLuhSyMS6wcw8gF2y_-gBG7H-3R0lc0jnSZCGvd3JZx0zQdTMZ7X1y5fQ6jshEq6vFryJ3atI4NuDbYwLuic0MOrq1Z-u_eWRwUSFNDFA1OZjGUcZB41MAczOOfK06t42cyS7FhXtWgTyAo-6ait0AA6cT_m4dHIg8lUY" />
+            </div>
+            <div class="relative z-10 text-center px-4 max-w-4xl">
+                <h1
+                    class="font-display-hero text-headline-lg-mobile md:text-display-hero text-on-surface mb-6 uppercase tracking-tight">
+                    Walk in <span class="text-primary text-glow">Style</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                    Experience the pinnacle of footwear engineering. Where cutting-edge performance meets high-fashion
+                    editorial aesthetics.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button
+                        class="px-10 py-4 bg-primary-container text-on-primary font-label-caps text-label-caps hover:scale-105 transition-transform duration-300">
+                        Shop Now
+                    </button>
+                    <button
+                        class="px-10 py-4 border border-white/20 text-on-surface font-label-caps text-label-caps hover:bg-white/10 transition-colors">
+                        View Lookbook
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Categories Bento Grid -->
+        <section id="categories" class="py-section-gap px-6 md:px-margin-desktop bg-surface">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16">
+                    <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">
+                        Curated Collections</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Tailored excellence for every stride.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-gutter h-[800px] md:h-[600px]">
+                    <!-- Adult -->
+                    <a href="category.html?type=Adult" class="md:col-span-3 md:row-span-2 glass-card relative overflow-hidden group block">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-esdfTlJA_D1SO7RJrSdg3-hqlJh7q5zQQx2xB5xVrtNHNDtTp_0Q_QI0Y2EXvi5DwTUV-c2nqXPXLIHjQudaGZu2GEvgrr4qa0s51lSEMhMaif79boNrrdIQTS-4H-T2C6YSb-J2XVEylh2JlWdLOsDer2_xdlHKO23Nt7ekPhqMEGACLCPpg1eqGMd8o3U6Vjk1hXwL9jZalhUU8NxcIxCmX-CVjTQ3L3Z9ZEensj8OI-kwKWbtzzICnBnpFZAEX-kH5WBOIXP7" />
+                        <div class="absolute bottom-0 left-0 p-8">
+                            <span class="font-label-caps text-label-caps text-primary mb-2 block">New Season</span>
+                            <h3 class="font-headline-md text-headline-md text-on-surface">Adult</h3>
+                        </div>
+                    </a>
+                    <!-- Sports -->
+                    <a href="category.html?type=Sports" class="md:col-span-3 md:row-span-1 glass-card relative overflow-hidden group block">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLP_nLyuc_Mj-ZVpl0cdB4m1dkhZUqYNuWw94Gr0kDb3Es0y_Gw_QwrgJkUV9Ddtuyj2-x6LDuFnxQQv58vPLxgDxEE2ggtN3AJCHkKuJfKmLpVvVPpG3_8tqgtYMa95Tw6k_xasm9uuKWuziUNB2S13-4bD8ghuqc2x8TSWJ7mHuza5bvEe4j0dEbZX2Oj9ZyxcWhD8XIMv3-elFrYaOlt6JpnsmkeOpsAZ4WgA-DbPai-rJaBr0SlrPQkMmQhv65iM3CcE1jIUl4" />
+                        <div class="absolute bottom-0 left-0 p-8">
+                            <h3 class="font-headline-md text-headline-md text-on-surface">Sports</h3>
+                        </div>
+                    </a>
+                    <!-- Kids -->
+                    <a href="category.html?type=Kids" class="md:col-span-1 md:row-span-1 glass-card relative overflow-hidden group block">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" src="ChatGPT Image Jun 12, 2026, 06_58_26 PM.png"/>
+                        <div class="absolute inset-0 bg-primary/20 mix-blend-overlay"></div>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6">
+                            <h3 class="font-label-caps text-label-caps text-on-surface">Kids</h3>
+                        </div>
+                    </a>
+                    <!-- Formal -->
+                    <a href="category.html?type=Formal" class="md:col-span-1 md:row-span-1 glass-card relative overflow-hidden group block">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" src="formal.png"/>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6">
+                            <h3 class="font-label-caps text-label-caps text-on-surface">Formal</h3>
+                        </div>
+                    </a>
+                    <!-- Casual -->
+                    <a href="category.html?type=Casual" class="md:col-span-1 md:row-span-1 glass-card relative overflow-hidden group block">
+                        <img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" src="ChatGPT Image Jun 12, 2026, 07_03_28 PM.png"/>
+                        <div class="absolute inset-0 flex flex-col justify-end p-6">
+                            <h3 class="font-label-caps text-label-caps text-on-surface">Casual</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Featured Products -->
+        <section class="py-section-gap px-6 md:px-margin-desktop">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-16">
+                    <div>
+                        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">
+                            Featured Drops</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Highly anticipated releases for the
+                            elite.</p>
+                    </div>
+                    <button
+                        class="hidden md:block font-label-caps text-label-caps text-primary border-b border-primary">View
+                        All Products</button>
+                </div>
+                <div id="dynamic-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter"></div>
+            </div>
+        </section>
+        <!-- Why Choose Us -->
+        <section class="py-section-gap px-6 md:px-margin-desktop bg-surface-container-lowest">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                    <div class="p-8 border-l border-white/5 hover:border-primary transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-6 text-[40px]">local_shipping</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Free Delivery</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Global expedited shipping on all
+                            prestige orders.</p>
+                    </div>
+                    <div class="p-8 border-l border-white/5 hover:border-primary transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-6 text-[40px]">replay</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Easy Returns</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Hassle-free returns within our
+                            30-day elite window.</p>
+                    </div>
+                    <div class="p-8 border-l border-white/5 hover:border-primary transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-6 text-[40px]">verified</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Premium Quality</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Crafted with rare materials and
+                            artisanal precision.</p>
+                    </div>
+                    <div class="p-8 border-l border-white/5 hover:border-primary transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-6 text-[40px]">support_agent</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">24/7 Support</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Dedicated concierges for your
+                            fashion journey.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Newsletter / CTA -->
+        <section class="relative py-section-gap overflow-hidden">
+            <div class="absolute inset-0 bg-primary/5"></div>
+            <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+                <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-6 uppercase">
+                    Join the Elite</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-10">Subscribe for early access to limited
+                    edition drops and private styling events.</p>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input
+                        class="flex-grow bg-surface-container-high border-none border-b-2 border-white/10 focus:border-primary focus:ring-0 text-on-surface font-label-caps py-4 px-6 transition-all"
+                        placeholder="ENTER YOUR EMAIL" type="email" />
+                    <button
+                        class="bg-primary text-on-primary font-label-caps text-label-caps px-12 py-4 hover:scale-105 transition-transform">Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="bg-surface-container-lowest text-on-surface-variant w-full relative border-t border-white/5 py-section-gap px-6 md:px-margin-desktop">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-gutter mb-20">
+            <div class="max-w-xs">
+                <div class="font-display-hero text-headline-md text-primary mb-6">StepStyle</div>
+                <p class="font-body-md text-body-md">Redefining the architecture of motion through luxury performance
+                    footwear since 2024.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+                <div>
+                    <h4 class="font-label-caps text-label-caps text-on-surface mb-6">COLLECTIONS</h4>
+                    <ul class="flex flex-col gap-4">
+                        <li><a class="hover:text-primary transition-colors" href="#">Performance</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Heritage</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Limited</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-label-caps text-on-surface mb-6">ASSISTANCE</h4>
+                    <ul class="flex flex-col gap-4">
+                        <li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-label-caps text-on-surface mb-6">CONNECT</h4>
+                    <div class="flex gap-4">
+                        <span class="material-symbols-outlined cursor-pointer hover:text-primary">share</span>
+                        <span class="material-symbols-outlined cursor-pointer hover:text-primary">public</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <span class="font-body-md text-[14px] opacity-50">© 2024 StepStyle Luxury. All rights reserved.</span>
+            <div class="flex gap-8">
+                <a class="font-label-caps text-[10px] hover:text-primary transition-colors" href="#">TERMS OF
+                    SERVICE</a>
+                <a class="font-label-caps text-[10px] hover:text-primary transition-colors" href="#">ACCESSIBILITY</a>
+                <a class="font-label-caps text-[10px] text-white/40 hover:text-primary transition-colors" href="admin.html">ADMIN</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Fetch and load products dynamically
+        fetch('/api/products')
+            .then(res => res.json())
+            .then(products => {
+                const grid = document.getElementById('dynamic-product-grid');
+                if (!grid) return;
+                grid.innerHTML = products.map(p => {
+                    const mainImg = Array.isArray(p.img) ? p.img[0] : p.img;
+                    return `
+                        <div class="glass-card flex flex-col p-4 group cursor-pointer" onclick="window.location.href='product.html?id=${p._id}'">
+                            <div class="relative aspect-square overflow-hidden mb-6">
+                                <img src="${mainImg}" alt="${p.name}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500"/>
+                            <button class="absolute bottom-4 right-4 bg-primary text-on-primary p-3 rounded-full opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                            </button>
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-headline-md text-[18px] text-on-surface">${p.name}</h4>
+                            <span class="font-label-caps text-label-caps text-primary">₹${p.price}</span>
+                        </div>
+                        <div class="flex items-center gap-1 mb-6">
+                            ${Array(5).fill('<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: \'FILL\' 1;">star</span>').join('')}
+                        </div>
+                        <button class="w-full py-3 border border-white/10 font-label-caps text-[10px] hover:border-primary hover:text-primary transition-colors uppercase tracking-widest">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+                // Apply hover scale interactions to dynamically added cards
+                grid.querySelectorAll('.glass-card').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        const img = card.querySelector('img');
+                        if (img) img.style.transform = 'scale(1.05)';
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        const img = card.querySelector('img');
+                        if (img) img.style.transform = 'scale(1)';
+                    });
+                });
+            })
+            .catch(err => console.error('Error loading products:', err));
+
+        // Initial setup for existing cards (like categories grid)
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const img = card.querySelector('img');
+                if (img) img.style.transform = 'scale(1.05)';
+            });
+            card.addEventListener('mouseleave', () => {
+                const img = card.querySelector('img');
+                if (img) img.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+
+</html>
