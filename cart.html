@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>StepStyle | Shopping Cart</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#41382e",
+                        "on-surface-variant": "#d8c3ad",
+                        "surface-container-highest": "#3c3329",
+                        "surface-container-lowest": "#140d06",
+                        "on-primary-container": "#613b00",
+                        "primary-container": "#f59e0b",
+                        "primary": "#ffc174",
+                        "surface": "#19120a",
+                        "on-surface": "#f0e0d1",
+                        "background": "#0A0A0A",
+                        "on-background": "#f0e0d1",
+                        "secondary": "#b7c8e1",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "display-hero": ["Montserrat"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #f0e0d1;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 193, 116, 0.3);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 193, 116, 0.4);
+        }
+    </style>
+    <script src="search.js" defer></script>
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-full mx-auto">
+        <div class="font-display-hero text-headline-md text-primary tracking-tighter cursor-pointer" onclick="window.location.href='index.html'">StepStyle</div>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html">Home</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html#categories">Categories</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="aboutus.html">About Us</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="code.html">Contact Us</a>
+        </div>
+        <div class="flex items-center gap-6 text-on-surface-variant">
+            <button class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">search</button>
+            <a href="wishlist.html" class="relative cursor-pointer hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">favorite</span>
+                <span id="wishlist-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="cart.html" class="relative cursor-pointer hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span id="cart-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="auth.html" id="user-nav-link" class="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                <span class="material-symbols-outlined">person</span>
+                <span id="user-nav-text" class="hidden sm:inline text-xs font-label-caps uppercase tracking-wider font-bold">Login</span>
+            </a>
+            <button class="md:hidden material-symbols-outlined">menu</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 md:px-8 pt-32 pb-32 w-full flex flex-col">
+        <!-- Breadcrumbs -->
+        <div class="text-xs text-on-surface-variant/70 mb-8 flex gap-2 items-center flex-wrap uppercase tracking-wider font-label-caps">
+            <a href="index.html" class="hover:text-primary">Home</a>
+            <span>&gt;</span>
+            <span class="text-primary font-bold">Shopping Cart</span>
+        </div>
+
+        <!-- Header -->
+        <div class="mb-12 border-b border-white/10 pb-6">
+            <span class="font-label-caps text-[11px] text-primary block tracking-widest uppercase mb-2">Checkout Stage</span>
+            <h1 class="font-display-hero text-4xl md:text-5xl uppercase tracking-tighter text-glow">Your Cart</h1>
+        </div>
+
+        <!-- Cart items rows container -->
+        <div id="cart-items-container" class="space-y-6 flex-grow">
+            <div class="text-on-surface-variant/50 text-center py-20 font-body-md">
+                Loading your shopping cart...
+            </div>
+        </div>
+
+        <!-- Sticky Bottom Checkout Bar -->
+        <div id="checkout-bar" class="fixed bottom-0 left-0 w-full bg-[#140d06]/90 backdrop-blur-xl border-t border-white/10 py-6 px-6 md:px-margin-desktop z-30 hidden">
+            <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <span class="font-label-caps text-[11px] text-on-surface-variant uppercase tracking-wider block">Estimated Total</span>
+                    <span id="cart-total-price" class="font-display-hero text-2xl md:text-3xl text-primary text-glow">₹0</span>
+                </div>
+                <button onclick="proceedToCheckout()" class="px-10 py-4 bg-primary text-black font-label-caps text-label-caps font-bold hover:scale-[1.02] transition-transform duration-300 uppercase tracking-widest focus:outline-none w-full sm:w-auto">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest text-on-surface-variant w-full relative border-t border-white/5 py-12 px-6 md:px-margin-desktop mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-gutter mb-12">
+            <div class="max-w-xs">
+                <div class="font-display-hero text-headline-md text-primary mb-4">StepStyle</div>
+                <p class="font-body-md text-sm leading-relaxed">Redefining the architecture of motion through luxury performance footwear since 2024.</p>
+                
+                <div class="flex gap-4 mt-6">
+                    <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">share</span>
+                    <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">public</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">QUICK LINKS</h4>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="index.html">Home</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="index.html#categories">Categories</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="aboutus.html">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="code.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">CUSTOMER SERVICE</h4>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Returns & Exchanges</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">CONTACT INFO</h4>
+                    <p class="text-sm leading-relaxed mb-2">123 Shoe Street, New York, USA</p>
+                    <p class="text-sm leading-relaxed mb-2">+1 234 567 8900</p>
+                    <p class="text-sm leading-relaxed">support@stepstyle.luxury</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-body-md">
+            <span class="opacity-50">© 2024 StepStyle Luxury. All rights reserved.</span>
+            <div class="flex gap-6">
+                <a class="hover:text-primary transition-colors uppercase" href="#">TERMS OF SERVICE</a>
+                <a class="hover:text-primary transition-colors uppercase" href="#">ACCESSIBILITY</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client-side logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) {
+                alert("Please login to view your cart");
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            // Navbar User Auth check
+            const navText = document.getElementById('user-nav-text');
+            const navLink = document.getElementById('user-nav-link');
+            if (navText) navText.innerText = 'Logout';
+            if (navLink) {
+                navLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userToken');
+                    window.location.href = 'auth.html';
+                });
+            }
+
+            loadCartItems();
+        });
+
+        async function loadCartItems() {
+            const token = localStorage.getItem('userToken');
+            const container = document.getElementById('cart-items-container');
+            const checkoutBar = document.getElementById('checkout-bar');
+            
+            try {
+                const res = await fetch('/api/cart', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!res.ok) throw new Error('Failed to fetch cart');
+                const cartItems = await res.json();
+
+                if (cartItems.length === 0) {
+                    container.innerHTML = `
+                        <div class="flex flex-col items-center justify-center py-20 text-center space-y-6 max-w-md mx-auto">
+                            <span class="material-symbols-outlined text-[64px] text-primary/40">shopping_cart</span>
+                            <h3 class="font-headline-md text-2xl text-on-surface uppercase font-bold">Your Cart is Empty</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                                Explore our new drops and find performance luxury footwear made for you.
+                            </p>
+                            <button onclick="window.location.href='index.html'" class="px-8 py-3 bg-white/5 border border-white/20 hover:border-primary hover:text-primary transition-colors text-xs font-label-caps uppercase tracking-wider font-bold">
+                                Shop Featured Drops
+                            </button>
+                        </div>
+                    `;
+                    checkoutBar.classList.add('hidden');
+                    return;
+                }
+
+                // Render cart rows
+                let totalSum = 0;
+                container.innerHTML = cartItems.map(item => {
+                    const product = item.productId;
+                    if (!product) return ''; // Skip if product details are missing
+
+                    const qty = item.quantity || 1;
+                    const price = parseFloat(product.price) || 0;
+                    const rowTotal = price * qty;
+                    totalSum += rowTotal;
+
+                    const imgUrl = Array.isArray(product.img) ? product.img[0] : product.img;
+
+                    return `
+                        <div class="glass-card p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300" id="cart-item-${product._id}">
+                            <!-- Product thumbnail & info -->
+                            <div class="flex flex-col sm:flex-row items-center gap-6 w-full md:w-3/5">
+                                <img src="${imgUrl}" alt="${product.name}" class="w-24 h-24 object-cover bg-white/5 border border-white/10 rounded-lg" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=150'"/>
+                                <div class="text-center sm:text-left">
+                                    <h3 class="font-headline-md text-lg text-on-surface uppercase">${product.name}</h3>
+                                    <p class="text-xs text-primary font-bold uppercase tracking-widest mt-1">${product.category} Shoes • Brand: ${product.brand || 'StepStyle'}</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Pricing & quantity controls -->
+                            <div class="flex items-center justify-between md:justify-end gap-12 w-full md:w-2/5 border-t md:border-0 border-white/5 pt-4 md:pt-0">
+                                <div>
+                                    <span class="text-xs text-on-surface-variant block uppercase tracking-wider text-center md:text-left">Quantity</span>
+                                    <div class="flex items-center gap-3 mt-1.5 bg-white/5 border border-white/10 rounded px-2 py-1">
+                                        <button onclick="updateQty('${product._id}', ${qty - 1}, this)" class="material-symbols-outlined text-sm hover:text-primary transition-colors focus:outline-none select-none">remove</button>
+                                        <span class="font-bold text-on-surface text-sm w-6 text-center select-none">${qty}</span>
+                                        <button onclick="updateQty('${product._id}', ${qty + 1}, this)" class="material-symbols-outlined text-sm hover:text-primary transition-colors focus:outline-none select-none">add</button>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-on-surface-variant block uppercase tracking-wider">Price</span>
+                                    <span class="font-headline-md text-primary font-bold text-lg block mt-1">₹${price.toLocaleString('en-IN')}</span>
+                                </div>
+                                <button onclick="removeCartItem('${product._id}', this)" class="material-symbols-outlined text-red-400 hover:text-red-300 hover:scale-110 transition-all p-3 hover:bg-red-500/10 rounded-full focus:outline-none" title="Remove Item">
+                                    delete
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Update sticky checkout bar total
+                document.getElementById('cart-total-price').innerText = "₹" + totalSum.toLocaleString('en-IN');
+                checkoutBar.classList.remove('hidden');
+
+            } catch (err) {
+                console.error("Cart retrieval error:", err);
+                container.innerHTML = `
+                    <div class="text-red-400 text-center py-20">
+                        <span class="material-symbols-outlined text-4xl mb-2">error</span>
+                        <p class="font-body-md text-sm">Failed to retrieve shopping cart. Please check your connection.</p>
+                    </div>
+                `;
+                checkoutBar.classList.add('hidden');
+            }
+        }
+
+        async function removeCartItem(productId, button) {
+            if (!confirm("Remove this item from your cart?")) return;
+
+            const token = localStorage.getItem('userToken');
+            try {
+                button.disabled = true;
+                const res = await fetch('/api/cart/remove', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ productId })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    // Instantly fade out and remove DOM element
+                    const row = document.getElementById(`cart-item-${productId}`);
+                    if (row) {
+                        row.style.opacity = '0';
+                        row.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            row.remove();
+                            loadCartItems(); // Reload sums and updates badges
+                            if (window.updateNavbarCounters) window.updateNavbarCounters();
+                        }, 400);
+                    }
+                } else {
+                    alert(data.error || "Failed to remove item.");
+                    button.disabled = false;
+                }
+            } catch (err) {
+                console.error("Remove cart item error:", err);
+                alert("Network error. Could not delete item.");
+                button.disabled = false;
+            }
+        }
+
+        async function updateQty(productId, newQty, button) {
+            const token = localStorage.getItem('userToken');
+            if (newQty < 1) {
+                if (!confirm("Remove this item from your cart?")) return;
+            }
+
+            try {
+                const parent = button.parentElement;
+                const buttons = parent.querySelectorAll('button');
+                buttons.forEach(btn => btn.disabled = true);
+
+                const res = await fetch('/api/cart/update', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ productId, quantity: newQty })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    loadCartItems();
+                    if (window.updateNavbarCounters) window.updateNavbarCounters();
+                } else {
+                    alert(data.error || "Failed to update quantity.");
+                    buttons.forEach(btn => btn.disabled = false);
+                }
+            } catch (err) {
+                console.error("Update quantity error:", err);
+                alert("Network error. Could not update cart.");
+                buttons.forEach(btn => btn.disabled = false);
+            }
+        }
+
+        function proceedToCheckout() {
+            window.location.href = 'checkout.html';
+        }
+    </script>
+</body>
+
+</html>

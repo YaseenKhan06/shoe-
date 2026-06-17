@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>StepStyle | Order Atelier</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#41382e",
+                        "on-surface-variant": "#d8c3ad",
+                        "surface-container-highest": "#3c3329",
+                        "surface-container-lowest": "#140d06",
+                        "on-primary-container": "#613b00",
+                        "primary-container": "#f59e0b",
+                        "primary": "#ffc174",
+                        "surface": "#19120a",
+                        "on-surface": "#f0e0d1",
+                        "background": "#0A0A0A",
+                        "on-background": "#f0e0d1",
+                        "secondary": "#b7c8e1",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "display-hero": ["Montserrat"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #f0e0d1;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 193, 116, 0.2);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 193, 116, 0.4);
+        }
+    </style>
+    <script src="search.js" defer></script>
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-full mx-auto">
+        <div class="font-display-hero text-headline-md text-primary tracking-tighter cursor-pointer" onclick="window.location.href='index.html'">StepStyle</div>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html">Home</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html#categories">Categories</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="aboutus.html">About Us</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="code.html">Contact Us</a>
+        </div>
+        <div class="flex items-center gap-6 text-on-surface-variant">
+            <button class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">search</button>
+            <a href="wishlist.html" class="relative cursor-pointer hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">favorite</span>
+                <span id="wishlist-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="cart.html" class="relative cursor-pointer hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span id="cart-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="auth.html" id="user-nav-link" class="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                <span class="material-symbols-outlined">person</span>
+                <span id="user-nav-text" class="hidden sm:inline text-xs font-label-caps uppercase tracking-wider font-bold">Login</span>
+            </a>
+            <button class="md:hidden material-symbols-outlined">menu</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-5xl mx-auto px-6 md:px-8 pt-32 pb-24 w-full flex flex-col">
+        <!-- Breadcrumbs -->
+        <div class="text-xs text-on-surface-variant/70 mb-8 flex gap-2 items-center flex-wrap uppercase tracking-wider font-label-caps">
+            <a href="index.html" class="hover:text-primary">Home</a>
+            <span>&gt;</span>
+            <span class="text-primary font-bold">My Orders</span>
+        </div>
+
+        <!-- Header -->
+        <div class="mb-12 border-b border-white/10 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+                <span class="font-label-caps text-[11px] text-primary block tracking-widest uppercase mb-2">History & Tracking</span>
+                <h1 class="font-display-hero text-4xl md:text-5xl uppercase tracking-tighter text-glow">Your Orders</h1>
+            </div>
+            <button onclick="window.location.href='index.html'" class="px-6 py-3 border border-white/10 hover:border-primary hover:text-primary text-xs font-label-caps uppercase tracking-wider font-bold transition-all w-fit">
+                Continue Shopping
+            </button>
+        </div>
+
+        <!-- Orders container -->
+        <div id="orders-feed" class="space-y-10">
+            <div class="text-on-surface-variant/50 text-center py-20 font-body-md">
+                Querying your purchases...
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest text-on-surface-variant border-t border-white/5 py-12 px-6 md:px-margin-desktop mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-body-md">
+            <span class="opacity-50">© 2024 StepStyle Luxury. All rights reserved.</span>
+            <div class="flex gap-6">
+                <a class="hover:text-primary transition-colors uppercase" href="index.html">Home</a>
+                <a class="hover:text-primary transition-colors uppercase" href="aboutus.html">About</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripting logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) {
+                alert("Please login to view your order history.");
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            // Navbar User Auth check
+            const navText = document.getElementById('user-nav-text');
+            const navLink = document.getElementById('user-nav-link');
+            if (navText) navText.innerText = 'Logout';
+            if (navLink) {
+                navLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userToken');
+                    window.location.href = 'auth.html';
+                });
+            }
+
+            loadUserOrders();
+        });
+
+        async function loadUserOrders() {
+            const token = localStorage.getItem('userToken');
+            const container = document.getElementById('orders-feed');
+
+            try {
+                const res = await fetch('/api/orders/my-orders', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!res.ok) throw new Error('Failed to retrieve purchases');
+                const orders = await res.json();
+
+                if (orders.length === 0) {
+                    container.innerHTML = `
+                        <div class="flex flex-col items-center justify-center py-20 text-center space-y-6 max-w-md mx-auto">
+                            <span class="material-symbols-outlined text-[64px] text-primary/40">receipt_long</span>
+                            <h3 class="font-headline-md text-2xl text-on-surface uppercase font-bold">No Orders Found</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                                You haven't made any purchases yet. Experience performance luxury drops today.
+                            </p>
+                            <button onclick="window.location.href='index.html'" class="px-8 py-3 bg-white/5 border border-white/20 hover:border-primary hover:text-primary transition-colors text-xs font-label-caps uppercase tracking-wider font-bold">
+                                Shop Elite Drops
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = orders.map(order => {
+                    const date = new Date(order.createdAt).toLocaleDateString('en-IN', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+
+                    // Determine visual progress tracking indicators
+                    const status = order.status || 'Pending';
+                    let progressPercent = 0;
+                    
+                    let step1Class = 'border-primary bg-primary text-black';
+                    let step1TextClass = 'text-primary font-bold';
+                    let step1Icon = 'done';
+
+                    let step2Class = 'border-white/10 bg-[#140d06] text-on-surface-variant/40';
+                    let step2TextClass = 'text-on-surface-variant/40';
+                    let step2Icon = 'circle';
+
+                    let step3Class = 'border-white/10 bg-[#140d06] text-on-surface-variant/40';
+                    let step3TextClass = 'text-on-surface-variant/40';
+                    let step3Icon = 'circle';
+
+                    let step4Class = 'border-white/10 bg-[#140d06] text-on-surface-variant/40';
+                    let step4TextClass = 'text-on-surface-variant/40';
+                    let step4Icon = 'circle';
+
+                    if (status === 'Pending') {
+                        progressPercent = 0;
+                        step1Icon = 'schedule'; // Show schedule icon for pending
+                    } else if (status === 'Confirmed') {
+                        progressPercent = 33;
+                        step2Class = 'border-primary bg-primary text-black';
+                        step2TextClass = 'text-primary font-bold';
+                        step2Icon = 'done';
+                    } else if (status === 'Shipped') {
+                        progressPercent = 66;
+                        step2Class = 'border-primary bg-primary text-black';
+                        step2TextClass = 'text-primary font-bold';
+                        step2Icon = 'done';
+
+                        step3Class = 'border-primary bg-primary text-black';
+                        step3TextClass = 'text-primary font-bold';
+                        step3Icon = 'done';
+                    } else if (status === 'Delivered') {
+                        progressPercent = 100;
+                        step2Class = 'border-primary bg-primary text-black';
+                        step2TextClass = 'text-primary font-bold';
+                        step2Icon = 'done';
+
+                        step3Class = 'border-primary bg-primary text-black';
+                        step3TextClass = 'text-primary font-bold';
+                        step3Icon = 'done';
+
+                        step4Class = 'border-primary bg-primary text-black';
+                        step4TextClass = 'text-primary font-bold';
+                        step4Icon = 'done';
+                    }
+
+                    // Render items list inside card
+                    const itemsHtml = (order.items || []).map(item => {
+                        const product = item.productId;
+                        if (!product) return '';
+
+                        const qty = item.quantity || 1;
+                        const price = parseFloat(product.price) || 0;
+                        const mainImg = Array.isArray(product.img) ? product.img[0] : product.img;
+
+                        return `
+                            <div class="flex items-center gap-4 py-3 border-b border-white/5 last:border-0">
+                                <img src="${mainImg}" alt="${product.name}" class="w-12 h-12 object-cover bg-white/5 border border-white/10 rounded" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=150'"/>
+                                <div class="flex-grow">
+                                    <h4 class="font-headline-md text-sm text-on-surface uppercase font-bold">${product.name}</h4>
+                                    <p class="text-xs text-on-surface-variant/80">${product.category} Shoes • Qty: ${qty}</p>
+                                </div>
+                                <span class="font-mono text-sm text-on-surface">₹${(price * qty).toLocaleString('en-IN')}</span>
+                            </div>
+                        `;
+                    }).join('');
+
+                    // Cancel order button (only show if Pending or Confirmed)
+                    const showCancelBtn = (status === 'Pending' || status === 'Confirmed');
+                    const cancelBtnHtml = showCancelBtn ? `
+                        <div class="pt-4 flex justify-start">
+                            <button onclick="cancelOrder('${order._id}', this)" class="px-5 py-2.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 hover:border-red-500/50 text-red-400 hover:text-red-300 text-xs font-label-caps uppercase tracking-wider font-bold transition-all rounded focus:outline-none">
+                                Cancel Order
+                            </button>
+                        </div>
+                    ` : '';
+
+                    let trackerHtml = '';
+                    if (status === 'Cancelled') {
+                        trackerHtml = `
+                            <div class="pt-6 border-t border-white/5 flex items-center gap-2 text-red-400">
+                                <span class="material-symbols-outlined text-base">cancel</span>
+                                <span class="font-label-caps text-xs uppercase tracking-wider font-bold">This order has been cancelled</span>
+                            </div>
+                        `;
+                    } else {
+                        trackerHtml = `
+                            <div class="pt-6 border-t border-white/5">
+                                <span class="text-[10px] font-label-caps text-on-surface-variant/70 uppercase tracking-widest block mb-6">Delivery status timeline</span>
+                                <div class="relative flex items-center justify-between w-full px-4 sm:px-10">
+                                    <!-- Progress track wrapper -->
+                                    <div class="absolute left-4 right-4 sm:left-10 sm:right-10 top-4 -translate-y-1/2 h-[3px] z-0 px-4">
+                                        <div class="relative w-full h-full">
+                                            <!-- Background progress track -->
+                                            <div class="absolute inset-0 bg-white/10 rounded-full"></div>
+                                            <!-- Active progress track -->
+                                            <div class="absolute left-0 top-0 h-full bg-primary rounded-full transition-all duration-700" style="width: ${progressPercent}%;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 1: Placed -->
+                                    <div class="relative z-10 flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center border-2 transition-colors duration-500 ${step1Class}">
+                                            <span class="material-symbols-outlined text-sm font-bold">${step1Icon}</span>
+                                        </div>
+                                        <span class="text-[9px] sm:text-xs font-label-caps uppercase mt-2 tracking-wider ${step1TextClass}">Placed</span>
+                                    </div>
+
+                                    <!-- Step 2: Confirmed -->
+                                    <div class="relative z-10 flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center border-2 transition-colors duration-500 ${step2Class}">
+                                            <span class="material-symbols-outlined text-sm font-bold">${step2Icon}</span>
+                                        </div>
+                                        <span class="text-[9px] sm:text-xs font-label-caps uppercase mt-2 tracking-wider ${step2TextClass}">Confirmed</span>
+                                    </div>
+
+                                    <!-- Step 3: Shipped -->
+                                    <div class="relative z-10 flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center border-2 transition-colors duration-500 ${step3Class}">
+                                            <span class="material-symbols-outlined text-sm font-bold">${step3Icon}</span>
+                                        </div>
+                                        <span class="text-[9px] sm:text-xs font-label-caps uppercase mt-2 tracking-wider ${step3TextClass}">Shipped</span>
+                                    </div>
+
+                                    <!-- Step 4: Delivered -->
+                                    <div class="relative z-10 flex flex-col items-center">
+                                        <div class="w-8 h-8 rounded-full flex items-center justify-center border-2 transition-colors duration-500 ${step4Class}">
+                                            <span class="material-symbols-outlined text-sm font-bold">${step4Icon}</span>
+                                        </div>
+                                        <span class="text-[9px] sm:text-xs font-label-caps uppercase mt-2 tracking-wider ${step4TextClass}">Delivered</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    return `
+                        <div class="glass-card p-6 md:p-8 rounded-xl space-y-6">
+                            <!-- Card Header Details -->
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-white/10 pb-4">
+                                <div>
+                                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider block">Order ID</span>
+                                    <span class="font-mono font-bold text-primary text-base">${order.orderId || 'N/A'}</span>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider block text-left sm:text-right">Placed On</span>
+                                    <span class="font-bold text-sm text-on-surface block sm:text-right">${date}</span>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider block text-left sm:text-right">Payment</span>
+                                    <span class="px-2 py-0.5 text-xs font-bold rounded bg-white/5 border border-white/10 text-on-surface block sm:text-right mt-0.5">${order.paymentMethod || 'COD'}</span>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-on-surface-variant uppercase tracking-wider block text-left sm:text-right">Total Sum</span>
+                                    <span class="font-display-hero text-lg text-primary text-glow font-bold block sm:text-right">₹${order.totalAmount ? order.totalAmount.toLocaleString('en-IN') : '0'}</span>
+                                </div>
+                            </div>
+
+                            <!-- Products Grid Section -->
+                            <div class="space-y-2">
+                                <span class="text-[10px] font-label-caps text-on-surface-variant/70 uppercase tracking-widest block mb-2">Items Ordered</span>
+                                ${itemsHtml}
+                                ${cancelBtnHtml}
+                            </div>
+
+                            <!-- Visual Tracker (Flipkart style timeline) or Cancelled Badge -->
+                            ${trackerHtml}
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (err) {
+                console.error("Orders list error:", err);
+                container.innerHTML = `
+                    <div class="text-red-400 text-center py-20 bg-red-950/20 border border-red-500/10 rounded-xl">
+                        <span class="material-symbols-outlined text-4xl mb-2">error</span>
+                        <p class="font-body-md text-sm">Failed to load order history. Please check back later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function cancelOrder(orderId, button) {
+            if (!confirm("Are you sure you want to cancel this order?")) return;
+            const token = localStorage.getItem('userToken');
+            try {
+                button.disabled = true;
+                const originalText = button.innerText;
+                button.innerText = 'CANCELLING...';
+
+                const res = await fetch(`/api/orders/${orderId}/cancel`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    alert("Order cancelled successfully!");
+                    loadUserOrders(); // instantly updates UI state
+                } else {
+                    alert(data.error || "Failed to cancel order.");
+                    button.disabled = false;
+                    button.innerText = originalText;
+                }
+            } catch (err) {
+                console.error("Cancel order error:", err);
+                alert("Network error. Could not cancel order.");
+                button.disabled = false;
+                button.innerText = 'Cancel Order';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -87,14 +87,18 @@
         </div>
         <div class="flex items-center gap-6 text-on-surface-variant">
             <button class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">search</button>
-            <div class="relative cursor-pointer hover:text-primary transition-colors">
+            <a href="wishlist.html" class="relative cursor-pointer hover:text-primary transition-colors">
                 <span class="material-symbols-outlined">favorite</span>
-                <span class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
-            </div>
-            <div class="relative cursor-pointer hover:text-primary transition-colors">
+                <span id="wishlist-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="cart.html" class="relative cursor-pointer hover:text-primary transition-colors">
                 <span class="material-symbols-outlined">shopping_cart</span>
-                <span class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
-            </div>
+                <span id="cart-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="auth.html" id="user-nav-link" class="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                <span class="material-symbols-outlined">person</span>
+                <span id="user-nav-text" class="hidden sm:inline text-xs font-label-caps uppercase tracking-wider font-bold">Login</span>
+            </a>
         </div>
     </nav>
 
@@ -197,27 +201,27 @@
                 <div class="space-y-3">
                     <p class="font-label-caps text-xs text-on-surface-variant uppercase tracking-wider">Quantity</p>
                     <div class="flex items-center border border-white/20 rounded w-max">
-                        <button class="px-4 py-2 hover:bg-white/5 text-lg font-bold transition-colors">-</button>
-                        <input type="text" value="1" readonly class="w-12 bg-transparent text-center border-0 focus:ring-0 text-sm"/>
-                        <button class="px-4 py-2 hover:bg-white/5 text-lg font-bold transition-colors">+</button>
+                        <button onclick="changeQty(-1)" class="px-4 py-2 hover:bg-white/5 text-lg font-bold transition-colors focus:outline-none">-</button>
+                        <input type="text" id="prod-qty" value="1" readonly class="w-12 bg-transparent text-center border-0 focus:ring-0 text-sm"/>
+                        <button onclick="changeQty(1)" class="px-4 py-2 hover:bg-white/5 text-lg font-bold transition-colors focus:outline-none">+</button>
                     </div>
                 </div>
 
                 <!-- Action buttons -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                    <button class="py-4 bg-primary text-black font-label-caps text-label-caps hover:scale-[1.02] transition-transform duration-300 flex items-center justify-center gap-2 font-bold">
-                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+                    <button id="add-to-cart-btn" onclick="addToCartClick()" class="py-4 bg-primary text-black font-label-caps text-label-caps hover:scale-[1.02] transition-transform duration-300 flex items-center justify-center gap-2 font-bold focus:outline-none">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
                         Add to Cart
                     </button>
-                    <button class="py-4 border border-primary text-primary font-label-caps text-label-caps hover:bg-primary hover:text-black transition-all hover:scale-[1.02] duration-300 font-bold uppercase tracking-wider">
+                    <button class="py-4 border border-primary text-primary font-label-caps text-label-caps hover:bg-primary hover:text-black transition-all hover:scale-[1.02] duration-300 font-bold uppercase tracking-wider focus:outline-none">
                         Buy Now
                     </button>
                 </div>
 
                 <!-- Wishlist and Compare options -->
                 <div class="flex items-center gap-6 text-xs font-label-caps text-on-surface-variant pt-2">
-                    <button class="flex items-center gap-2 hover:text-primary transition-colors">
-                        <span class="material-symbols-outlined text-sm">favorite</span> Add to Wishlist
+                    <button onclick="toggleWishlistClick()" class="flex items-center gap-2 hover:text-primary transition-colors focus:outline-none">
+                        <span id="wishlist-heart-icon" class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">favorite</span> <span id="wishlist-btn-text">Add to Wishlist</span>
                     </button>
                     <button class="flex items-center gap-2 hover:text-primary transition-colors">
                         <span class="material-symbols-outlined text-sm">sync</span> Compare
@@ -306,6 +310,58 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="glass-card rounded-xl p-8 mb-16 space-y-8">
+            <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                <h3 class="font-headline-md text-xl uppercase tracking-wider">Customer Reviews</h3>
+                <div class="flex items-center gap-4">
+                    <div id="reviews-average-rating" class="flex items-center gap-1.5 text-primary text-xs font-bold font-mono">
+                        <!-- Average stars dynamically rendered -->
+                    </div>
+                    <span id="reviews-count-badge" class="bg-primary/10 border border-primary/20 text-primary px-3 py-1 text-xs font-bold rounded-full font-mono">0 Reviews</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Left: Reviews List (7 cols) -->
+                <div class="lg:col-span-7 space-y-6 max-h-[500px] overflow-y-auto pr-2" id="reviews-list-container">
+                    <p class="text-xs text-on-surface-variant/70">No reviews yet. Be the first to share your thoughts.</p>
+                </div>
+
+                <!-- Right: Write a Review Form (5 cols, hidden by default) -->
+                <div class="lg:col-span-5 hidden" id="write-review-container">
+                    <div class="border border-white/10 bg-white/[0.01] rounded-lg p-6 space-y-4">
+                        <h4 class="font-headline-md text-sm uppercase tracking-wider">Write a Review</h4>
+                        
+                        <!-- Star Selection -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-on-surface-variant uppercase tracking-wider">Rating:</span>
+                            <div class="flex gap-1" id="star-rating-select" onmouseleave="resetStars()">
+                                <button onclick="setRating(1)" onmouseover="hoverRating(1)" type="button" class="material-symbols-outlined text-primary text-[20px] focus:outline-none" style="font-variation-settings: 'FILL' 0;">star</button>
+                                <button onclick="setRating(2)" onmouseover="hoverRating(2)" type="button" class="material-symbols-outlined text-primary text-[20px] focus:outline-none" style="font-variation-settings: 'FILL' 0;">star</button>
+                                <button onclick="setRating(3)" onmouseover="hoverRating(3)" type="button" class="material-symbols-outlined text-primary text-[20px] focus:outline-none" style="font-variation-settings: 'FILL' 0;">star</button>
+                                <button onclick="setRating(4)" onmouseover="hoverRating(4)" type="button" class="material-symbols-outlined text-primary text-[20px] focus:outline-none" style="font-variation-settings: 'FILL' 0;">star</button>
+                                <button onclick="setRating(5)" onmouseover="hoverRating(5)" type="button" class="material-symbols-outlined text-primary text-[20px] focus:outline-none" style="font-variation-settings: 'FILL' 0;">star</button>
+                            </div>
+                        </div>
+
+                        <!-- Comment Textarea -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label class="block font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider">Your Experience</label>
+                                <span id="word-counter" class="text-[10px] text-on-surface-variant/70 font-mono">0 / 100 words</span>
+                            </div>
+                            <textarea id="review-comment" required rows="3" oninput="updateWordCounter(this)" class="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-on-surface input-glow transition-all resize-none text-xs" placeholder="Describe your experience with these shoes (max 100 words)..."></textarea>
+                        </div>
+
+                        <button onclick="submitReview()" id="submit-review-btn" class="w-full py-3 bg-primary text-black font-label-caps text-xs font-bold hover:scale-[1.02] transition-transform duration-300 uppercase tracking-widest focus:outline-none">
+                            Submit Review
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -458,6 +514,116 @@
             }
         }
 
+        function changeQty(amount) {
+            const qtyInput = document.getElementById('prod-qty');
+            if (qtyInput) {
+                let val = parseInt(qtyInput.value) || 1;
+                val += amount;
+                if (val < 1) val = 1;
+                qtyInput.value = val;
+            }
+        }
+
+        async function addToCartClick() {
+            const token = localStorage.getItem('userToken');
+            if (!token) {
+                alert("Please login to continue");
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const qtyInput = document.getElementById('prod-qty');
+            const quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
+
+            if (!productId) {
+                alert("Invalid Product");
+                return;
+            }
+
+            const btn = document.getElementById('add-to-cart-btn');
+            const originalText = btn.innerText;
+
+            try {
+                btn.disabled = true;
+                btn.innerText = 'ADDING TO CART...';
+
+                const res = await fetch('/api/cart/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ productId, quantity })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    alert("Product added to cart!");
+                    if (window.updateNavbarCounters) window.updateNavbarCounters();
+                } else {
+                    alert(data.error || "Failed to add product to cart.");
+                }
+            } catch (err) {
+                console.error("Cart error:", err);
+                alert("Failed to connect to the server.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        }
+
+        async function toggleWishlistClick() {
+            const token = localStorage.getItem('userToken');
+            if (!token) {
+                alert("Please login to continue");
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                alert("Invalid Product");
+                return;
+            }
+
+            const heartIcon = document.getElementById('wishlist-heart-icon');
+            const btnText = document.getElementById('wishlist-btn-text');
+
+            try {
+                const res = await fetch('/api/wishlist/toggle', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ productId })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    if (data.action === 'added') {
+                        heartIcon.style.variationSettings = "'FILL' 1";
+                        btnText.innerText = 'In Wishlist';
+                        alert("Product added to wishlist!");
+                    } else {
+                        heartIcon.style.variationSettings = "'FILL' 0";
+                        btnText.innerText = 'Add to Wishlist';
+                        alert("Product removed from wishlist!");
+                    }
+                    if (window.updateNavbarCounters) window.updateNavbarCounters();
+                } else {
+                    alert(data.error || "Failed to toggle wishlist.");
+                }
+            } catch (err) {
+                console.error("Wishlist error:", err);
+                alert("Failed to connect to the server.");
+            }
+        }
+
         function selectSize(btn) {
             document.querySelectorAll('#sizes-grid > button').forEach(b => {
                 b.className = "py-3 bg-white/5 border border-white/10 text-center text-sm hover:border-primary transition-all rounded text-on-surface";
@@ -586,6 +752,283 @@
 
             // Load related products dynamically
             loadRelatedProducts(p._id);
+
+            // Initial check of wishlist
+            const token = localStorage.getItem('userToken');
+            if (token) {
+                fetch('/api/wishlist', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+                .then(res => res.json())
+                .then(wishlist => {
+                    const inWishlist = wishlist.some(item => item._id === p._id);
+                    const heartIcon = document.getElementById('wishlist-heart-icon');
+                    const btnText = document.getElementById('wishlist-btn-text');
+                    if (heartIcon && btnText) {
+                        if (inWishlist) {
+                            heartIcon.style.variationSettings = "'FILL' 1";
+                            btnText.innerText = 'In Wishlist';
+                        } else {
+                            heartIcon.style.variationSettings = "'FILL' 0";
+                            btnText.innerText = 'Add to Wishlist';
+                        }
+                    }
+                })
+                .catch(err => console.error("Error checking wishlist:", err));
+            }
+
+            // Populate reviews dynamically
+            const reviewsCount = document.getElementById('reviews-count-badge');
+            const reviewsList = document.getElementById('reviews-list-container');
+            const averageContainer = document.getElementById('reviews-average-rating');
+            const reviews = p.reviews || [];
+            if (reviewsCount) reviewsCount.innerText = `${reviews.length} Reviews`;
+
+            // Calculate and display average rating
+            if (averageContainer) {
+                if (reviews.length === 0) {
+                    averageContainer.innerHTML = '';
+                } else {
+                    const totalRating = reviews.reduce((sum, r) => sum + r.rating, 0);
+                    const avg = (totalRating / reviews.length).toFixed(1);
+                    const roundedAvg = Math.round(totalRating / reviews.length);
+                    const avgStars = Array(5).fill(0).map((_, idx) => `
+                        <span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' ${idx < roundedAvg ? 1 : 0};">star</span>
+                    `).join('');
+                    averageContainer.innerHTML = `<span>${avg}</span> <div class="flex gap-0.5">${avgStars}</div>`;
+                }
+            }
+
+            if (reviewsList) {
+                if (reviews.length === 0) {
+                    reviewsList.innerHTML = `<p class="text-xs text-on-surface-variant/70 py-8">No reviews yet. Be the first to share your thoughts.</p>`;
+                } else {
+                    const loggedInUserId = getLoggedInUserId();
+                    reviewsList.innerHTML = reviews.map(r => {
+                        const stars = Array(5).fill(0).map((_, idx) => `
+                            <span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' ${idx < r.rating ? 1 : 0};">star</span>
+                        `).join('');
+                        const reviewDate = new Date(r.date).toLocaleDateString('en-IN', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                        });
+
+                        // Show small delete button if logged-in user is the owner
+                        const isOwner = loggedInUserId && r.userId === loggedInUserId;
+                        const deleteBtn = isOwner ? `
+                            <button onclick="deleteReview('${p._id}', '${r._id}', this)" class="material-symbols-outlined text-xs text-red-400 hover:text-red-300 p-1 hover:bg-red-500/10 rounded transition-all focus:outline-none ml-2" title="Delete Review">
+                                delete
+                            </button>
+                        ` : '';
+
+                        return `
+                            <div class="border-b border-white/5 pb-4 space-y-2" id="review-card-${r._id}">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="text-sm font-bold text-on-surface">${r.name}</h4>
+                                    <div class="flex items-center text-[11px] text-on-surface-variant/50">
+                                        <span>${reviewDate}</span>
+                                        ${deleteBtn}
+                                    </div>
+                                </div>
+                                <div class="flex gap-1">${stars}</div>
+                                <p class="text-xs text-on-surface-variant leading-relaxed">${r.comment}</p>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            // Check review permission
+            if (p._id) {
+                checkReviewPermission(p._id);
+            }
+        }
+
+        // Navbar User Auth check
+        const userToken = localStorage.getItem('userToken');
+        if (userToken) {
+            const navText = document.getElementById('user-nav-text');
+            const navLink = document.getElementById('user-nav-link');
+            if (navText) navText.innerText = 'Logout';
+            if (navLink) {
+                navLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userToken');
+                    window.location.reload();
+                });
+            }
+        }
+
+        // Review Helper variables and functions
+        let selectedRating = 0;
+
+        function setRating(rating) {
+            selectedRating = rating;
+            updateStarsDisplay(selectedRating);
+        }
+
+        function hoverRating(rating) {
+            updateStarsDisplay(rating);
+        }
+
+        function resetStars() {
+            updateStarsDisplay(selectedRating);
+        }
+
+        function updateStarsDisplay(rating) {
+            const stars = document.querySelectorAll('#star-rating-select button');
+            stars.forEach((star, idx) => {
+                if (idx < rating) {
+                    star.style.fontVariationSettings = "'FILL' 1";
+                    star.classList.add('text-primary');
+                    star.classList.remove('text-on-surface-variant/40');
+                } else {
+                    star.style.fontVariationSettings = "'FILL' 0";
+                    star.classList.remove('text-primary');
+                    star.classList.add('text-on-surface-variant/40');
+                }
+            });
+        }
+
+        // Initialize stars state
+        resetStars();
+
+        function updateWordCounter(textarea) {
+            const words = textarea.value.trim().split(/\s+/).filter(Boolean);
+            const count = words.length;
+            const counter = document.getElementById('word-counter');
+            if (counter) {
+                counter.innerText = `${count} / 100 words`;
+                if (count > 100) {
+                    counter.classList.add('text-red-400');
+                    counter.classList.remove('text-on-surface-variant/70');
+                } else {
+                    counter.classList.remove('text-red-400');
+                    counter.classList.add('text-on-surface-variant/70');
+                }
+            }
+        }
+
+        async function checkReviewPermission(productId) {
+            const token = localStorage.getItem('userToken');
+            if (!token) return;
+
+            try {
+                const res = await fetch(`/api/reviews/check/${productId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.canReview) {
+                        document.getElementById('write-review-container').classList.remove('hidden');
+                    } else {
+                        document.getElementById('write-review-container').classList.add('hidden');
+                    }
+                }
+            } catch (err) {
+                console.error("Error checking review status:", err);
+            }
+        }
+
+        async function submitReview() {
+            const token = localStorage.getItem('userToken');
+            if (!token) {
+                alert("Please login to submit a review.");
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const comment = document.getElementById('review-comment').value.trim();
+
+            if (!selectedRating) {
+                alert("Please select a rating of at least 1 star.");
+                return;
+            }
+
+            if (!comment) {
+                alert("Please enter a comment.");
+                return;
+            }
+
+            const words = comment.split(/\s+/).filter(Boolean);
+            if (words.length > 100) {
+                alert("Review exceeds the strict 100-word limit.");
+                return;
+            }
+
+            const btn = document.getElementById('submit-review-btn');
+            const originalText = btn.innerText;
+
+            try {
+                btn.disabled = true;
+                btn.innerText = 'SUBMITTING...';
+
+                const res = await fetch(`/api/products/${productId}/review`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ rating: selectedRating, comment })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    alert("Review submitted successfully!");
+                    document.getElementById('review-comment').value = '';
+                    setRating(0);
+                    updateWordCounter(document.getElementById('review-comment'));
+                    fetchProductDetails(productId);
+                } else {
+                    alert(data.error || "Failed to submit review.");
+                }
+            } catch (err) {
+                console.error("Submit review error:", err);
+                alert("Network error. Failed to submit review.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        }
+
+        function getLoggedInUserId() {
+            const token = localStorage.getItem('userToken');
+            if (!token) return null;
+            try {
+                const payloadBase64 = token.split('.')[1];
+                const decodedPayload = JSON.parse(atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/')));
+                return decodedPayload.userId;
+            } catch (e) {
+                console.error("Token decoding error:", e);
+                return null;
+            }
+        }
+
+        async function deleteReview(productId, reviewId, button) {
+            if (!confirm("Delete your review?")) return;
+            const token = localStorage.getItem('userToken');
+            try {
+                button.disabled = true;
+                const res = await fetch(`/api/products/${productId}/reviews/${reviewId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    alert("Review deleted successfully!");
+                    fetchProductDetails(productId);
+                } else {
+                    alert(data.error || "Failed to delete review.");
+                    button.disabled = false;
+                }
+            } catch (err) {
+                console.error("Delete review error:", err);
+                alert("Network error. Could not delete review.");
+                button.disabled = false;
+            }
         }
     </script>
 

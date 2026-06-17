@@ -122,14 +122,25 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
                 <div>
                     <span class="font-label-caps text-[11px] text-primary block tracking-widest uppercase">Atelier Control Panel</span>
-                    <h1 class="font-display-hero text-3xl md:text-5xl uppercase tracking-tighter mt-1">Product Console</h1>
+                    <h1 class="font-display-hero text-3xl md:text-5xl uppercase tracking-tighter mt-1">Console</h1>
                 </div>
                 <div class="text-on-surface-variant text-sm font-body-lg">
                     Logged in securely as <span class="text-primary font-bold">StepStyle Admin</span>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Tab Switcher Navigation -->
+            <div class="flex border-b border-white/10 gap-8">
+                <button onclick="switchTab('products')" id="tab-btn-products" class="font-label-caps text-sm text-primary border-b-2 border-primary pb-3 font-bold transition-all uppercase tracking-wider focus:outline-none">
+                    Products
+                </button>
+                <button onclick="switchTab('orders')" id="tab-btn-orders" class="font-label-caps text-sm text-on-surface-variant hover:text-primary pb-3 transition-all uppercase tracking-wider focus:outline-none">
+                    Orders Received
+                </button>
+            </div>
+
+            <!-- Products Console Tab Content -->
+            <div id="products-tab-content" class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <!-- Add Product Form Column -->
                 <div class="lg:col-span-5">
                     <div class="glass-card p-8 rounded-xl space-y-8 sticky top-32">
@@ -223,10 +234,18 @@
                         <span id="product-count" class="bg-primary/10 border border-primary/20 text-primary px-3 py-1 text-xs font-bold rounded-full">0 Products</span>
                     </div>
 
-                    <div id="product-list-container" class="space-y-4 max-h-[600px] overflow-y-auto pr-2">
-                        <!-- Products will be appended here dynamically -->
+                   <div id="product-list-container" class="space-y-4 max-h-[600px] overflow-y-auto pr-2">
                         <div class="text-on-surface-variant/50 text-center py-12">Loading inventory drops...</div>
                     </div>
+                </div>
+            </div> <div id="orders-tab-content" class="hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-headline-md text-headline-md uppercase tracking-tight">Orders Received</h3>
+                    <span id="orders-count" class="bg-primary/10 border border-primary/20 text-primary px-3 py-1 text-xs font-bold rounded-full">0 Orders</span>
+                </div>
+
+                <div id="orders-list-container" class="glass-card rounded-xl overflow-hidden">
+                    <div class="text-on-surface-variant/50 text-center py-12">Loading orders...</div>
                 </div>
             </div>
         </div>
@@ -264,6 +283,159 @@
             localStorage.removeItem('stepstyle_token');
         }
 
+        function switchTab(tabName) {
+            const productsBtn = document.getElementById('tab-btn-products');
+            const ordersBtn = document.getElementById('tab-btn-orders');
+            const productsContent = document.getElementById('products-tab-content');
+            const ordersContent = document.getElementById('orders-tab-content');
+
+            if (tabName === 'products') {
+                productsBtn.className = "font-label-caps text-sm text-primary border-b-2 border-primary pb-3 font-bold transition-all uppercase tracking-wider focus:outline-none";
+                ordersBtn.className = "font-label-caps text-sm text-on-surface-variant hover:text-primary pb-3 transition-all uppercase tracking-wider focus:outline-none";
+                productsContent.classList.remove('hidden');
+                ordersContent.classList.add('hidden');
+                loadInventory();
+            } else if (tabName === 'orders') {
+                ordersBtn.className = "font-label-caps text-sm text-primary border-b-2 border-primary pb-3 font-bold transition-all uppercase tracking-wider focus:outline-none";
+                productsBtn.className = "font-label-caps text-sm text-on-surface-variant hover:text-primary pb-3 transition-all uppercase tracking-wider focus:outline-none";
+                productsContent.classList.add('hidden');
+                ordersContent.classList.remove('hidden');
+                loadOrders();
+            }
+        }
+
+        async function loadOrders() {
+            const container = document.getElementById('orders-list-container');
+            const countBadge = document.getElementById('orders-count');
+            
+            try {
+                const res = await fetch(`${API_BASE}/orders/all`);
+                if (!res.ok) throw new Error('Failed to fetch orders');
+                const orders = await res.json();
+                
+                countBadge.innerText = `${orders.length} Orders`;
+                container.innerHTML = '';
+                
+                if (orders.length === 0) {
+                    container.innerHTML = `<div class="text-on-surface-variant/50 text-center py-12 font-body-md">No orders received yet.</div>`;
+                    return;
+                }
+
+                // Dynamically create the table
+                const table = document.createElement('table');
+                table.className = "w-full text-left border-collapse text-sm";
+                table.innerHTML = `
+                    <thead>
+                        <tr class="border-b border-white/10 text-on-surface-variant font-label-caps text-xs tracking-wider">
+                            <th class="p-6">Order ID</th>
+                            <th class="p-6">Order Date</th>
+                            <th class="p-6">Customer</th>
+                            <th class="p-6">Mobile</th>
+                            <th class="p-6">Address</th>
+                            <th class="p-6">Amount</th>
+                            <th class="p-6">Payment</th>
+                            <th class="p-6">Status</th>
+                        </tr>
+                    </thead>
+                `;
+
+                const tbody = document.createElement('tbody');
+                tbody.className = "divide-y divide-white/5 font-body-md text-on-surface";
+
+                orders.forEach(order => {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-white/[0.02] transition-colors";
+                    
+                    const date = new Date(order.createdAt).toLocaleDateString('en-IN', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    const addressObj = order.shippingAddress || {};
+                    const fullAddress = `${addressObj.address || ''}, ${addressObj.city || ''}, ${addressObj.state || ''} - ${addressObj.pinCode || ''}`;
+                    const customerName = addressObj.name || order.userId?.name || 'Anonymous';
+                    const customerMobile = addressObj.mobile || 'N/A';
+                    const amount = parseFloat(order.totalAmount) || 0;
+
+                    tr.innerHTML = `
+                        <td class="p-6 font-mono text-xs font-bold text-primary">${order.orderId || 'N/A'}</td>
+                        <td class="p-6 font-mono text-xs text-on-surface-variant/80">${date}</td>
+                        <td class="p-6 font-bold text-on-surface">${customerName}</td>
+                        <td class="p-6 text-on-surface-variant">${customerMobile}</td>
+                        <td class="p-6 text-xs text-on-surface-variant whitespace-normal min-w-[200px]" title="${fullAddress}">${fullAddress}</td>
+                        <td class="p-6 font-bold text-primary">₹${amount.toLocaleString('en-IN')}</td>
+                        <td class="p-6">
+                            <span class="px-2.5 py-1 text-xs font-bold rounded ${order.paymentMethod === 'COD' ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'}">
+                                ${order.paymentMethod || 'N/A'}
+                            </span>
+                        </td>
+                        <td class="p-6">
+                            <select onchange="updateOrderStatus('${order._id}', this)" data-prev-value="${order.status}" ${order.status === 'Cancelled' ? 'disabled' : ''} class="bg-[#19120a] border border-white/10 rounded px-2.5 py-1.5 text-xs text-on-surface focus:outline-none focus:border-primary cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                                <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                <option value="Confirmed" ${order.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+                                <option value="Shipped" ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                                <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                                <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                table.appendChild(tbody);
+
+                const wrapper = document.createElement('div');
+                wrapper.className = "overflow-x-auto w-full";
+                wrapper.appendChild(table);
+                container.appendChild(wrapper);
+
+            } catch (err) {
+                console.error('Fetch orders error:', err);
+                container.innerHTML = `<div class="text-red-400 text-center py-12 font-body-md">Failed to load orders data.</div>`;
+            }
+        }
+
+        async function updateOrderStatus(orderId, select) {
+            const token = getToken();
+            if (!token) {
+                alert("Admin session expired. Please log in again.");
+                logout();
+                return;
+            }
+
+            const originalValue = select.getAttribute('data-prev-value') || 'Pending';
+            const newValue = select.value;
+            select.disabled = true;
+
+            try {
+                const res = await fetch(`${API_BASE}/orders/${orderId}/status`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ status: newValue })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    select.setAttribute('data-prev-value', newValue);
+                } else {
+                    alert(data.error || 'Failed to update order status.');
+                    select.value = originalValue;
+                }
+            } catch (err) {
+                console.error("Status update error:", err);
+                alert("Network error. Failed to update status.");
+                select.value = originalValue;
+            } finally {
+                select.disabled = false;
+            }
+        }
+
         function checkAuth() {
             const token = getToken();
             const loginContainer = document.getElementById('login-container');
@@ -275,7 +447,9 @@
                 loginContainer.classList.add('hidden');
                 dashboardContainer.classList.remove('hidden');
                 logoutBtn.classList.remove('hidden');
-                loadInventory();
+                // Ensure default tab starts on products
+                switchTab('products');
+                loadOrders(); // also load orders count in background
             } else {
                 // Show login, hide dashboard
                 loginContainer.classList.remove('hidden');

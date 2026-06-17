@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>StepStyle | Saved Wishlist</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#41382e",
+                        "on-surface-variant": "#d8c3ad",
+                        "surface-container-highest": "#3c3329",
+                        "surface-container-lowest": "#140d06",
+                        "on-primary-container": "#613b00",
+                        "primary-container": "#f59e0b",
+                        "primary": "#ffc174",
+                        "surface": "#19120a",
+                        "on-surface": "#f0e0d1",
+                        "background": "#0A0A0A",
+                        "on-background": "#f0e0d1",
+                        "secondary": "#b7c8e1",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "display-hero": ["Montserrat"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #f0e0d1;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 193, 116, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 193, 116, 0.4);
+        }
+    </style>
+    <script src="search.js" defer></script>
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-full mx-auto">
+        <div class="font-display-hero text-headline-md text-primary tracking-tighter cursor-pointer" onclick="window.location.href='index.html'">StepStyle</div>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html">Home</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="index.html#categories">Categories</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="aboutus.html">About Us</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105" href="code.html">Contact Us</a>
+        </div>
+        <div class="flex items-center gap-6 text-on-surface-variant">
+            <button class="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">search</button>
+            <a href="wishlist.html" class="relative cursor-pointer hover:text-primary text-primary transition-colors">
+                <span class="material-symbols-outlined">favorite</span>
+                <span id="wishlist-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="cart.html" class="relative cursor-pointer hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">shopping_cart</span>
+                <span id="cart-badge" class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="auth.html" id="user-nav-link" class="flex items-center gap-1 hover:text-primary transition-colors cursor-pointer">
+                <span class="material-symbols-outlined">person</span>
+                <span id="user-nav-text" class="hidden sm:inline text-xs font-label-caps uppercase tracking-wider font-bold">Login</span>
+            </a>
+            <button class="md:hidden material-symbols-outlined">menu</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-6 md:px-margin-desktop pt-32 pb-24 w-full flex flex-col">
+        <!-- Breadcrumbs -->
+        <div class="text-xs text-on-surface-variant/70 mb-8 flex gap-2 items-center flex-wrap uppercase tracking-wider font-label-caps">
+            <a href="index.html" class="hover:text-primary">Home</a>
+            <span>&gt;</span>
+            <span class="text-primary font-bold">Wishlist</span>
+        </div>
+
+        <!-- Header -->
+        <div class="mb-12 border-b border-white/10 pb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+                <span class="font-label-caps text-[11px] text-primary block tracking-widest uppercase mb-2">Curated Releases</span>
+                <h1 class="font-display-hero text-4xl md:text-5xl uppercase tracking-tighter text-glow">My Wishlist</h1>
+            </div>
+            <span id="wishlist-count" class="bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 text-xs font-bold rounded-full self-start sm:self-auto font-mono">0 Items</span>
+        </div>
+
+        <!-- Wishlist items grid container -->
+        <div id="wishlist-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter flex-grow">
+            <div class="text-on-surface-variant/50 text-center py-20 col-span-full font-body-md">
+                Fetching your curated favorites...
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container-lowest text-on-surface-variant w-full relative border-t border-white/5 py-12 px-6 md:px-margin-desktop mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-gutter mb-12">
+            <div class="max-w-xs">
+                <div class="font-display-hero text-headline-md text-primary mb-4">StepStyle</div>
+                <p class="font-body-md text-sm leading-relaxed">Redefining the architecture of motion through luxury performance footwear since 2024.</p>
+                
+                <div class="flex gap-4 mt-6">
+                    <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">share</span>
+                    <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">public</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">QUICK LINKS</h4>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="index.html">Home</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="index.html#categories">Categories</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="aboutus.html">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="code.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">CUSTOMER SERVICE</h4>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Returns & Exchanges</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps text-xs text-on-surface mb-4 font-bold tracking-wider">CONTACT INFO</h4>
+                    <p class="text-sm leading-relaxed mb-2">123 Shoe Street, New York, USA</p>
+                    <p class="text-sm leading-relaxed mb-2">+1 234 567 8900</p>
+                    <p class="text-sm leading-relaxed">support@stepstyle.luxury</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-body-md">
+            <span class="opacity-50">© 2024 StepStyle Luxury. All rights reserved.</span>
+            <div class="flex gap-6">
+                <a class="hover:text-primary transition-colors uppercase" href="#">TERMS OF SERVICE</a>
+                <a class="hover:text-primary transition-colors uppercase" href="#">ACCESSIBILITY</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client-side Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) {
+                alert("Please login to view your wishlist.");
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            // Navbar User Auth check
+            const navText = document.getElementById('user-nav-text');
+            const navLink = document.getElementById('user-nav-link');
+            if (navText) navText.innerText = 'Logout';
+            if (navLink) {
+                navLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userToken');
+                    window.location.href = 'auth.html';
+                });
+            }
+
+            loadWishlistItems();
+        });
+
+        async function loadWishlistItems() {
+            const token = localStorage.getItem('userToken');
+            const container = document.getElementById('wishlist-grid');
+            const badge = document.getElementById('wishlist-count');
+
+            try {
+                const res = await fetch('/api/wishlist', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!res.ok) throw new Error('Failed to fetch wishlist');
+                const products = await res.json();
+
+                badge.innerText = `${products.length} Items`;
+
+                if (products.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-span-full flex flex-col items-center justify-center py-20 text-center space-y-6 max-w-md mx-auto">
+                            <span class="material-symbols-outlined text-[64px] text-primary/40">favorite</span>
+                            <h3 class="font-headline-md text-2xl text-on-surface uppercase font-bold">Your Wishlist is Empty</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant leading-relaxed">
+                                Curate your collection of elite performance drops by adding products to your wishlist.
+                            </p>
+                            <button onclick="window.location.href='index.html'" class="px-8 py-3 bg-white/5 border border-white/20 hover:border-primary hover:text-primary transition-colors text-xs font-label-caps uppercase tracking-wider font-bold">
+                                Browse Drops
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = products.map(p => {
+                    if (!p) return '';
+                    const mainImg = Array.isArray(p.img) ? p.img[0] : p.img;
+                    const price = parseFloat(p.price) || 0;
+                    return `
+                        <div class="glass-card flex flex-col p-4 group relative rounded-xl transition-all duration-300" id="wishlist-item-${p._id}">
+                            <!-- Remove button (top right) -->
+                            <button onclick="toggleWishlistItem('${p._id}', this)" class="absolute top-6 right-6 z-10 bg-black/60 hover:bg-red-500/20 text-primary hover:text-red-400 p-2 rounded-full border border-white/10 transition-all focus:outline-none" title="Remove from Wishlist">
+                                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                            </button>
+
+                            <div class="relative aspect-square overflow-hidden mb-6 rounded-lg cursor-pointer" onclick="window.location.href='product.html?id=${p._id}'">
+                                <img src="${mainImg}" alt="${p.name}" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500"/>
+                            </div>
+
+                            <div class="flex justify-between items-start mb-2 cursor-pointer" onclick="window.location.href='product.html?id=${p._id}'">
+                                <h4 class="font-headline-md text-[18px] text-on-surface uppercase font-bold">${p.name}</h4>
+                                <span class="font-label-caps text-label-caps text-primary font-bold">₹${price.toLocaleString('en-IN')}</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant/70 uppercase tracking-wider font-bold mb-6">${p.category} Shoes</p>
+                            
+                            <div class="mt-auto pt-2">
+                                <button onclick="addToCartGlobal('${p._id}')" class="w-full py-3 bg-primary text-black font-label-caps text-xs hover:scale-[1.02] transition-transform font-bold uppercase tracking-widest">
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (err) {
+                console.error("Wishlist retrieval error:", err);
+                container.innerHTML = `
+                    <div class="text-red-400 text-center py-20 col-span-full">
+                        <span class="material-symbols-outlined text-4xl mb-2">error</span>
+                        <p class="font-body-md text-sm">Failed to retrieve wishlist. Please check your connection.</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function toggleWishlistItem(productId, button) {
+            if (!confirm("Remove this item from your wishlist?")) return;
+            const token = localStorage.getItem('userToken');
+            try {
+                button.disabled = true;
+                const res = await fetch('/api/wishlist/toggle', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ productId })
+                });
+
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    const card = document.getElementById(`wishlist-item-${productId}`);
+                    if (card) {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            card.remove();
+                            loadWishlistItems(); // Refresh counts and list
+                            if (window.updateNavbarCounters) window.updateNavbarCounters();
+                        }, 400);
+                    }
+                } else {
+                    alert(data.error || "Failed to remove item from wishlist.");
+                    button.disabled = false;
+                }
+            } catch (err) {
+                console.error("Toggle wishlist item error:", err);
+                alert("Network error. Could not toggle wishlist.");
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>
