@@ -409,14 +409,34 @@ app.post('/api/products', authenticateToken, async (req, res) => {
 app.delete('/api/products/:id', authenticateToken, async (req, res) => {
     try {
         await connectToDatabase();
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        const productId = req.params.id;
+
+        if (!mongoose.Types.ObjectId.isValid(productId)) {
             return res.status(400).json({ error: 'Invalid Product ID format' });
         }
-        const deletedProduct = await Product.findByIdAndDelete(req.params.id);
+        
+        const deletedProduct = await Product.findByIdAndDelete(productId);
         if (!deletedProduct) {
             return res.status(404).json({ error: 'Product not found' });
         }
-        return res.json({ success: true, message: 'Product deleted successfully' });
+
+        // Clean up references to this product from all users' carts and wishlists
+        await User.updateMany(
+            {
+                $or: [
+                    { 'cart.productId': productId },
+                    { wishlist: productId }
+                ]
+            },
+            {
+                $pull: {
+                    cart: { productId: productId },
+                    wishlist: productId
+                }
+            }
+        );
+
+        return res.json({ success: true, message: 'Product deleted successfully and cleaned up from users\' carts/wishlists' });
     } catch (err) {
         console.error('DELETE /api/products/:id error:', err);
         return res.status(500).json({ error: 'Failed to delete product from database' });
